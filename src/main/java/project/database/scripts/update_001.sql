@@ -1,20 +1,35 @@
 --liquibase formatted sql
 
---changeSet abeznos:update_001 logicalFilePath:database/scripts
-create table if not exists user_settings(
+--changeSet abeznos:update_001 logicalFilePath:project.database/scripts
+create table if not exists roles(
 id serial primary key,
+name varchar(50)
+);
+create table if not exists user_settings(
+id serial primary key not null,
 telephone varchar(50),
 address varchar(100)
 );
 
 create table if not exists users(
-id serial primary key,
-login varchar(50) unique,
-password varchar(100),
+id serial primary key not null,
+login varchar(50) unique not null,
+password varchar(100) not null,
 last_name varchar(50),
 first_name varchar(50),
 middle_name varchar(50),
 user_settings_id integer references user_settings(id)
+);
+
+create table if not exists roles(
+id serial primary key not null,
+name varchar(50)
+);
+
+create table if not exists users_roles(
+id serial primary key not null,
+user_id integer references users(id),
+roles_id integer references roles(id)
 );
 
 create table if not exists tables(

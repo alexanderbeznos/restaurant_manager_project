@@ -1,11 +1,15 @@
-package entities;
+package project.entities;
 
 import lombok.Setter;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Setter
 @Entity
 @Table(name = "users")
+@SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
 public class User {
 
     private Long id;
@@ -15,20 +19,25 @@ public class User {
     private String firstName;
     private String middleName;
     private UserSettings userSettings;
+    private Set<Roles> roles;
+
+    public User() {
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
-        public Long getId() {
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
+    @Column(name = "id", nullable = false)
+    public Long getId() {
         return id;
     }
 
-    @Column(name = "login")
+    @Column(name = "login", nullable = false)
     public String getLogin() {
         return login;
     }
 
-    @Column(name = "password")
+    @Size(min = 7, message = "Minimum 7 symbols")
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -48,9 +57,17 @@ public class User {
         return middleName;
     }
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_settings_id")
     public UserSettings getUserSettings() {
         return userSettings;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    public Set<Roles> getRoles() {
+        return roles;
     }
 }

@@ -1,4 +1,4 @@
-package config;
+package project.config;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,6 +20,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "project.dao")
 @PropertySource("classpath:/db/application.properties")
 public class JpaConfig {
 
@@ -30,7 +32,7 @@ public class JpaConfig {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getProperty("driverClassName"));
         dataSource.setUrl(env.getProperty("url"));
-        dataSource.setUsername(env.getProperty("username"));
+        dataSource.setUsername(env.getProperty("my.username"));
         dataSource.setPassword(env.getProperty("password"));
         return dataSource;
     }
@@ -48,7 +50,7 @@ public class JpaConfig {
     @Bean
     public Properties hibernateProperties() {
         Properties hibernateProp = new Properties();
-            hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+            hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
             hibernateProp.put("hibernate.format_sql", true);
             hibernateProp.put("hibernate.use_sql_comments", true);
             hibernateProp.put("hibernate.show_sql", true);
@@ -63,7 +65,7 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean factoryBean =
         new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPackagesToScan(
-                "entities");
+                "project/entities");
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaVendorAdapter(
                 new HibernateJpaVendorAdapter());
