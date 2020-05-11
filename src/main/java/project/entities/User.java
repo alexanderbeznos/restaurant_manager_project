@@ -31,12 +31,13 @@ public class User {
         return id;
     }
 
-    @Column(name = "login", nullable = false)
+    @Column(name = "login", unique = true, nullable = false)
     public String getLogin() {
         return login;
     }
 
-    @Size(min = 7, message = "Minimum 7 symbols")
+    //изменить на 7
+    @Size(min = 1, message = "Minimum 7 symbols")
     @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;

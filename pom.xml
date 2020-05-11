@@ -63,7 +63,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.6.2</version>
                 <configuration>
-                    <changeLogFile>${basedir}\src\main\java\project\database\db-changelog.xml</changeLogFile>
+                    <changeLogFile>${basedir}\src\main\resources\database\db-changelog.xml</changeLogFile>
                     <url>${application.url}</url>
                     <driver>${application.driver}</driver>
                     <username>${application.username}</username>

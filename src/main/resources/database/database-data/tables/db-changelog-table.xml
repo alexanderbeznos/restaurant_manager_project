@@ -6,6 +6,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="update_001.sql" relativeToChangelogFile="true"/>
-    <include file="update_002.sql" relativeToChangelogFile="true"/>
+    <include file="roles.sql" relativeToChangelogFile="true"/>
+    <include file="user-settings.sql" relativeToChangelogFile="true"/>
+    <include file="users.sql" relativeToChangelogFile="true"/>
+    <include file="users-roles.sql" relativeToChangelogFile="true"/>
+    <include file="tables.sql" relativeToChangelogFile="true"/>
+    <include file="reserve-tables.sql" relativeToChangelogFile="true"/>
+    <include file="order-food.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
