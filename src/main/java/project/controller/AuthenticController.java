@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import project.dao.RolesDao;
 import project.entities.Roles;
@@ -14,6 +16,7 @@ import project.service.UserService;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -34,15 +37,18 @@ public class AuthenticController {
     @GetMapping(value = "registration")
     public String getRegistration(Model model) {
         model.addAttribute("user", new User());
-        return "/authentic/registration";
+        return "registration";
     }
 
     @PostMapping(value = "registration")
     public String getRegistration(@ModelAttribute @Valid User user, BindingResult result, Model model) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
-            model.addAttribute("result", result);
-            return "/authentic/registration";
+            List<ObjectError> allErrors = result.getAllErrors();
+            allErrors.forEach(a -> {
+                model.addAttribute(((FieldError)a).getField(), a.getDefaultMessage());
+            });
+            return "registration";
         }
         UserSettings userSettings = new UserSettings();
         user.setUserSettings(userSettings);
@@ -59,6 +65,6 @@ public class AuthenticController {
         if (Boolean.TRUE.equals(mistake)) {
             model.addAttribute("errorKey", true);
         }
-        return "authentic/login";
+        return "login";
     }
 }

@@ -26,7 +26,7 @@ public class UserValidator implements Validator {
         User user = (User) target;
         if (userService.findByLogin(user.getLogin()) != null) {
             errors.rejectValue(
-                    "login", "", "This login is already in use"
+                    "login", "", "Такой логин уже используется"
             );
         }
     }

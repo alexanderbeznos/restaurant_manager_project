@@ -6,3 +6,11 @@ id serial primary key not null,
 user_id integer references users(id),
 roles_id integer references roles(id)
 );
+
+comment on table users_roles is 'Заказ пользователя';
+
+comment on column users_roles.id is 'Уникальный ID связи пользователя с ролью';
+
+comment on column users_roles.user_id is 'ID пользователя';
+
+comment on column users_roles.roles_id is 'ID роли';

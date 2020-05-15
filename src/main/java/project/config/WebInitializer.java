@@ -1,6 +1,5 @@
 package project.config;
 
-import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -33,7 +32,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter cef = new CharacterEncodingFilter();
         cef.setEncoding("UTF-8");
-        cef.setForceEncoding(true);
+        cef.setForceEncoding(false);
         return new Filter[] {cef, new HiddenHttpMethodFilter()};
     }
 }

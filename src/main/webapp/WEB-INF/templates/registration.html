@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="https://bootswatch.com/_assets/css/custom.min.css">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/registration.css}">
+
+    <meta charset="UTF-8">
+
+    <title>Регистрация</title>
+
+
+</head>
+<body>
+    <div class="container" align="center" style="vertical-align:top">
+        <div class="card bg-secondary" style="max-width: 25rem;">
+            <div class="card-header text-white">Регистрация</div>
+            <div class="card-body bg-light">
+                <form action="#" th:action="@{/registration}" th:object="${user}" method="post">
+                    <div>
+                        <label for="lastName">Фамилия:</label>
+                        <input type="text" id="lastName" th:field="*{lastName}" th:class="${lastName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${lastName != null}" th:text="${lastName}"></div>
+                    </div>
+                    <div class="spacing15"></div>
+                    <div>
+                        <label for="firstName">Имя:</label>
+                        <input type="text" id="firstName" th:field="*{firstName}" th:class="${firstName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback " th:if="${firstName != null}" th:text="${firstName}"></div>
+                    </div>
+                    <div class="spacing15"></div>
+                    <div>
+                        <label for="middleName">Отчество:</label>
+                        <input type="text" id="middleName" th:field="*{middleName}" th:class="${middleName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${middleName != null}" th:text="${middleName}"></div>
+                    </div>
+                    <div class="spacing15"></div>
+                    <div>
+                        <label for="login">Логин:</label>
+                        <input type="text" id="login" th:field="*{login}" th:class="${login != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${login != null}" th:text="${login}"></div>
+                    </div>
+                    <div class="spacing15"></div>
+                    <div>
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" th:field="*{password}" th:class="${password != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${password != null}" th:text="${password}"></div>
+                    </div>
+                    <div class="spacing30"></div>
+                    <div>
+                        <button type="submit" class="btn btn-secondary width100">Регистрация</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

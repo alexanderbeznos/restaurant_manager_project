@@ -37,22 +37,25 @@ public class User {
     }
 
     //изменить на 7
-    @Size(min = 1, message = "Minimum 7 symbols")
+    @Size(min = 1, message = "Минимум 7 символов")
     @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
 
+    @Size(max = 50, message = "Максимум 50 символов")
     @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
 
+    @Size(max = 50, message = "Максимум 50 символов")
     @Column(name = "first_name")
     public String getFirstName() {
         return firstName;
     }
 
+    @Size(max = 50, message = "Максимум 50 символов")
     @Column(name = "middle_name")
     public String getMiddleName() {
         return middleName;
