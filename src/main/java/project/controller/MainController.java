@@ -11,7 +11,7 @@ import project.service.UserService;
 
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/main")
 public class MainController {
 
     private final OrderFoodService orderFoodService;
@@ -23,13 +23,11 @@ public class MainController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "")
-    public String home() {
-        return "redirect: main";
-    }
+//    @GetMapping(value = "")
+//    public String home() {
+//        return "main";
+//    }
+//
 
-    @GetMapping(value = "main")
-    public String getMain(Model model) {
-        return "main";
-    }
+
 }
