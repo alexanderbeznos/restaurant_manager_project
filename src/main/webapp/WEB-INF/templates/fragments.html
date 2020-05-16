@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:fragment="head">
+        <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css" media="screen">
+        <link rel="stylesheet" href="https://bootswatch.com/_assets/css/custom.min.css">
+
+        <link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/static/css/fragments.css}">
+
+        <style th:inline="text">
+            .logo {
+                width: 168px;
+                height: 28px;
+                background:url([[@{/static/images/1.png}]]) center center no-repeat;
+                background-size: 100% 100%;
+                padding: 0 0;
+                display:block;
+            }
+
+            .logo:hover {
+                background-image: url([[@{/static/images/2.png}]])
+            }
+        </style>
+    </th:block>
+
+    <meta charset="UTF-8">
+    <title>Thymeleaf Fragments: home</title>
+</head>
+<body>
+    <div th:fragment="topMenu">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a th:href="@{/}" class="navbar-brand logo"></a>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link margin20" href="#" >Вход</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div th:fragment="side">
+        <div class="category-wrap">
+            <ul>
+                <li><a href="">Меню</a></li>
+                <li><a href="">Ресторан</a></li>
+                <li><a href="">Заказать еду</a></li>
+                <li><a href="">Журналы</a></li>
+                <li><a href="">Картинки</a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

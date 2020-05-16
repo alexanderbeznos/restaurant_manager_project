@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments.html :: head">
+    </th:block>
+
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+    <div th:replace="fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments.html :: side"></div>
+
+</body>
+</html>

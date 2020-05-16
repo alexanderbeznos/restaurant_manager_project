@@ -57,7 +57,7 @@ public class AuthenticController {
         setRoles.add(role);
         user.setRoles(setRoles);
         userService.saveAndFlush(user);
-        return "redirect: list";
+        return "redirect: login";
     }
 
     @GetMapping(value = "login")
