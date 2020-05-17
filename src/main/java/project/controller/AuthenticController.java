@@ -46,7 +46,7 @@ public class AuthenticController {
         if (result.hasErrors()) {
             List<ObjectError> allErrors = result.getAllErrors();
             allErrors.forEach(a -> {
-                model.addAttribute(((FieldError)a).getField(), a.getDefaultMessage());
+                model.addAttribute(((FieldError) a).getField(), a.getDefaultMessage());
             });
             return "registration";
         }

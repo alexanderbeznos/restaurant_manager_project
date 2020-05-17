@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <th:block th:fragment="head">
@@ -13,15 +14,52 @@
             .logo {
                 width: 168px;
                 height: 28px;
-                background:url([[@{/static/images/1.png}]]) center center no-repeat;
+                background:url([[@{/static/images/logo-white.png}]]) center center no-repeat;
                 background-size: 100% 100%;
                 padding: 0 0;
                 display:block;
             }
-
             .logo:hover {
-                background-image: url([[@{/static/images/2.png}]])
+                background-image: url([[@{/static/images/logo-green.png}]])
             }
+
+            .cart {
+                width: 28px;
+                height: 28px;
+                margin-right: 50px;
+                background:url([[@{/static/images/cart-white.png}]]) center center no-repeat;
+                background-size: 100% 100%;
+                padding: 0 0;
+                display:block;
+            }
+            .cart:hover {
+                background-image: url([[@{/static/images/cart-green.png}]])
+            }
+
+            .exit {
+                width: 28px;
+                height: 28px;
+                background:url([[@{/static/images/exit-white.png}]]) center center no-repeat;
+                background-size: 100% 100%;
+                padding: 0 0;
+                display:block;
+            }
+            .exit:hover {
+                background-image: url([[@{/static/images/exit-green.png}]])
+            }
+
+            .settings {
+                width: 28px;
+                height: 28px;
+                background:url([[@{/static/images/settings-white.png}]]) center center no-repeat;
+                background-size: 100% 100%;
+                padding: 0 0;
+                display:block;
+            }
+            .settings:hover {
+                background-image: url([[@{/static/images/settings-green.png}]])
+            }
+
         </style>
     </th:block>
 
@@ -35,10 +73,21 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                        <a th:href="@{/}" class="navbar-brand cart margin6"></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()" >
+                        <a th:href="@{/}" class="navbar-brand settings margin6"></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}" class="navbar-brand exit margin6"></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
                         <a class="nav-link margin20" th:href="@{/login}" >Вход</a>
                     </li>
                 </ul>
             </div>
+
+
         </nav>
     </div>
 
@@ -50,6 +99,14 @@
                 <li><a href="">Заказать еду</a></li>
                 <li><a href="">Журналы</a></li>
                 <li><a href="">Картинки</a></li>
+
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <a>Админ</a>
+                </div>
+                <div sec:authorize="hasAuthority('USER')">
+                    <a>Пользователь</a>
+                </div>
+
             </ul>
         </div>
     </div>
