@@ -1,3 +1,9 @@
+body {
+    padding-top: 55px;
+    color: white;
+    background: #2c3e50d4;
+}
+
 .width100 {
     width:100%
 }
@@ -16,6 +22,15 @@
 
 .spacing50 {
     height: 50px;
+}
+
+
+
+.center {
+    padding: 20px;
+    /*border: 5px solid #991022;*/
+    margin-left: 203px;
+    /*margin-top: 55px;*/
 }
 
 /*<img th:src="@{/static/images/logo-white.png}" width="168" height="28"  alt="Iconfinder"/>*/

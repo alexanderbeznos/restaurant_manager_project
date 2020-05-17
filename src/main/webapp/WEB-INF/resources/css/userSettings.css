@@ -1,0 +1,10 @@
+.list-settings {
+    position: relative;
+    padding: 20px;
+    /*border: 5px solid #404999;*/
+    left: 50px;
+    margin-right: 13.4%;
+    /*height: calc(100% - 54px);*/
+    height: 400px;
+
+}
