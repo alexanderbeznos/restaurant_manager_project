@@ -28,6 +28,11 @@ public class UserService {
     }
 
     @Transactional
+    public void saveOrUpdate(User user) {
+        userDao.saveAndFlush(user);
+    }
+
+    @Transactional
     public List<User> findAll() {
         return userDao.findAll();
     }

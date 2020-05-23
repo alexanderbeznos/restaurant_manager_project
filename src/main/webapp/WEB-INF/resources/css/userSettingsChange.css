@@ -3,18 +3,9 @@
     margin-right: 25%;
 }
 
-.top-text {
+.top-text{
     text-align: center;
     font-size: 1.8rem;
     letter-spacing: 2px;
     font-weight: 400;
-}
-
-.table-hover tbody tr:hover {
-    color: #ecf0fe80;
-}
-
-.table-text {
-    font-weight: 400;
-    letter-spacing: 1px;
 }

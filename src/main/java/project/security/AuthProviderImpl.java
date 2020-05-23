@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import project.entities.Roles;
 import project.entities.User;
 import project.service.UserService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,8 @@ public class AuthProviderImpl implements AuthenticationProvider {
         for (Roles role : user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-        return new UsernamePasswordAuthenticationToken(user, null, authorities);
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), authorities);
+        return new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
     }
 
     @Override

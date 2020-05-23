@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/userSettingsChange.css}">
+
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <meta charset="UTF-8">
+    <title>Настройки пользователя</title>
+</head>
+<body>
+    <div th:replace="fragments/fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments/fragments.html :: side"></div>
+
+
+
+    <div class="center">
+        <div class="children">
+            <h5 class="top-text">Изменить настройки</h5>
+            <br>
+            <form action="#" th:action="@{/main/settings-change-post}" th:object="${user}" method="post">
+                <div class="row">
+                    <div class="col">
+                        <label for="firstName">Имя:</label>
+                        <input type="text" id="firstName" th:field="*{firstName}" th:class="${firstNameError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback " th:if="${firstNameError != null}" th:text="${firstNameError}"></div>
+                    </div>
+                    <div class="col">
+                        <label for="telephone">Телефон:</label>
+                        <input type="text" id="telephone" th:field="*{userSettings.telephone}" th:class="${userSettingstelephoneError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${userSettingstelephoneError != null}" th:text="${userSettingstelephoneError}"></div>
+                    </div>
+                </div>
+                <div class="spacing15"></div>
+                <div class="row">
+                    <div class="col">
+                        <label for="middleName">Отчество:</label>
+                        <input type="text" id="middleName" th:field="*{middleName}" th:class="${middleNameError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${middleNameError != null}" th:text="${middleNameError}"></div>
+                    </div>
+                    <div class="col">
+                        <label for="address">Адрес:</label>
+                        <input type="text" id="address" th:field="*{userSettings.address}" th:class="${userSettingsaddressError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${userSettingsaddressError != null}" th:text="${userSettingsaddressError}"></div>
+                    </div>
+                </div>
+                <div class="spacing15"></div>
+                <div class="row">
+                    <div class="col">
+                        <label for="lastName">Фамилия:</label>
+                        <input type="text" id="lastName" th:field="*{lastName}" th:class="${lastNameError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${lastNameError != null}" th:text="${lastNameError}"></div>
+                    </div>
+                    <div class="col">
+                        <label for="login">Логин:</label>
+                        <input type="text" id="login" th:field="*{login}" th:class="${loginError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${loginError != null}" th:text="${loginError}"></div>
+                    </div>
+                </div>
+                <input type="hidden" th:field="*{id}" >
+                <input type="hidden" th:field="*{password}" >
+                <div class="spacing30"></div>
+                <div>
+                    <button type="submit" class="btn btn-outline-secondary width100">Сохранить</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>

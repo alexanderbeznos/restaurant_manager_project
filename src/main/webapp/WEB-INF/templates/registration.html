@@ -21,12 +21,6 @@
             <div class="card-body bg-light text-primary">
                 <form action="#" th:action="@{/registration}" th:object="${user}" method="post">
                     <div>
-                        <label for="lastName">Фамилия:</label>
-                        <input type="text" id="lastName" th:field="*{lastName}" th:class="${lastName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
-                        <div class="invalid-feedback" th:if="${lastName != null}" th:text="${lastName}"></div>
-                    </div>
-                    <div class="spacing15"></div>
-                    <div>
                         <label for="firstName">Имя:</label>
                         <input type="text" id="firstName" th:field="*{firstName}" th:class="${firstName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
                         <div class="invalid-feedback " th:if="${firstName != null}" th:text="${firstName}"></div>
@@ -36,6 +30,12 @@
                         <label for="middleName">Отчество:</label>
                         <input type="text" id="middleName" th:field="*{middleName}" th:class="${middleName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
                         <div class="invalid-feedback" th:if="${middleName != null}" th:text="${middleName}"></div>
+                    </div>
+                    <div class="spacing15"></div>
+                    <div>
+                        <label for="lastName">Фамилия:</label>
+                        <input type="text" id="lastName" th:field="*{lastName}" th:class="${lastName != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${lastName != null}" th:text="${lastName}"></div>
                     </div>
                     <div class="spacing15"></div>
                     <div>

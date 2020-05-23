@@ -3,6 +3,7 @@ package project.entities;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -61,6 +62,7 @@ public class User {
         return middleName;
     }
 
+    @Valid
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_settings_id")
     public UserSettings getUserSettings() {

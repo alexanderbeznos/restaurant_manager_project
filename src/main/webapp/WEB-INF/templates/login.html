@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<div class="container" align="center">
+<div class="container margin-top-70" align="center">
     <div class="card bg-secondary" style="max-width: 25rem;">
         <div class="card-header text-white">Вход на сайт</div>
         <div class="card-body bg-light text-primary">
@@ -32,6 +32,7 @@
                     <p th:if="${errorKey!=null}" class="text-danger">Неправильные данные</p>
                     <button type="submit" class="btn btn-secondary width100">Войти</button>
                 </div>
+
             </form>
             <div class="spacing10"></div>
             <form action="#" th:action="@{/registration}" method="get">

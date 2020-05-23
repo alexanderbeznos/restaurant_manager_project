@@ -8,6 +8,10 @@ body {
     width:100%
 }
 
+.width40 {
+    width:40%
+}
+
 .spacing10 {
     height: 10px;
 }
@@ -24,13 +28,19 @@ body {
     height: 50px;
 }
 
-
-
 .center {
-    padding: 20px;
+    padding: 30px;
     /*border: 5px solid #991022;*/
     margin-left: 203px;
-    /*margin-top: 55px;*/
 }
+
+.margin-top-70 {
+    margin-top: 70px;
+}
+
+.margin-left-30 {
+    margin-left: 30%;
+}
+
 
 /*<img th:src="@{/static/images/logo-white.png}" width="168" height="28"  alt="Iconfinder"/>*/

@@ -3,6 +3,7 @@ package project.entities;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Setter
 @Entity
@@ -24,11 +25,13 @@ public class UserSettings {
         return id;
     }
 
+    @Size(max = 50, message = "Максимум 50 символов")
     @Column(name = "telephone")
     public String getTelephone() {
         return telephone;
     }
 
+    @Size(max = 50, message = "Максимум 50 символов")
     @Column(name = "address")
     public String getAddress() {
         return address;
