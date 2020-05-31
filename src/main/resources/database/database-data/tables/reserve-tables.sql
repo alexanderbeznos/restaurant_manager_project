@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeSet abeznos:reserve-tables-01 logicalFilePath:database\database-data\tables
+--changeSet abeznos:reserve-tables-01 logicalFilePath:database\database-data\reserve-tables
 create table if not exists reserve_tables(
 id serial primary key,
 start_time varchar(50),

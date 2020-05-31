@@ -13,4 +13,6 @@
     <include file="tables-data.sql" relativeToChangelogFile="true"/>
     <include file="reserve-tables-data.sql" relativeToChangelogFile="true"/>
     <include file="order-food-data.sql" relativeToChangelogFile="true"/>
+    <include file="menu-category-data.sql" relativeToChangelogFile="true"/>
+    <include file="dish-data.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

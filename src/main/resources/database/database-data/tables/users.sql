@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeSet abeznos:users-01 logicalFilePath:database\database-data\tables
+--changeSet abeznos:users-01 logicalFilePath:database\database-data\users
 create table if not exists users(
 id serial primary key not null,
 login varchar(50) unique not null,

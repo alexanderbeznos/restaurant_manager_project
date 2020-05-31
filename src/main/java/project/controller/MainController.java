@@ -8,13 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.entities.User;
-import project.security.UserValidator;
-import project.service.OrderFoodService;
 import project.service.UserService;
 
 import javax.validation.Valid;
@@ -26,16 +21,12 @@ import java.util.List;
 @RequestMapping(value = "/main")
 public class MainController {
 
-    private final OrderFoodService orderFoodService;
     private final UserService userService;
-    private final UserValidator userValidator;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public MainController(OrderFoodService orderFoodService, UserService userService, UserValidator userValidator, PasswordEncoder passwordEncoder) {
-        this.orderFoodService = orderFoodService;
+    public MainController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
-        this.userValidator = userValidator;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -80,7 +71,7 @@ public class MainController {
     @PostMapping(value = "/password-change-post")
     public String getPasswordChangePost(String oldPassword, String newPassword1, String newPassword2, Principal principal, Model model) {
         boolean errors = false;
-        String currentPassword= userService.findByLogin(principal.getName()).getPassword();
+        String currentPassword = userService.findByLogin(principal.getName()).getPassword();
         if (!newPassword1.equals(newPassword2)) {
             model.addAttribute("differentNewPassword", "Введённые новые пароли не совпадают");
             errors = true;
@@ -109,6 +100,4 @@ public class MainController {
         }
         return "userPasswordChange";
     }
-
-
 }

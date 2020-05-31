@@ -8,6 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import project.dao.RolesDao;
+import project.entities.Dish;
 import project.entities.Roles;
 import project.entities.UserSettings;
 import project.security.UserValidator;
@@ -67,4 +68,11 @@ public class AuthenticController {
         }
         return "login";
     }
+
+    @GetMapping(value = "")
+    public String getMenu() {
+        return "redirect: menu/category/1";
+    }
+
+
 }

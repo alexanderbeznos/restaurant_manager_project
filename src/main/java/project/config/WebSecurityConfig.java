@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //                .antMatchers("/registration", "/login").anonymous()
 //                .antMatchers("/main").authenticated()
-                .antMatchers("/registration", "/login").anonymous()
+                .antMatchers("/registration", "/login", "/menu/**и").anonymous()
                 .antMatchers("/main/**").authenticated()
 //                .antMatchers("/main").permitAll()
 

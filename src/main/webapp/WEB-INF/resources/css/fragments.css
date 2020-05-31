@@ -48,8 +48,6 @@
     transition: .2s linear;
 }
 .category-wrap a:hover {
-    /*background: #80C8A0;*/
-    /*background: #18bc9c94;*/
     background: #18bc9c94;
     color: white;
 }

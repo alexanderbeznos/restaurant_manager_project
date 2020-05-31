@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeSet abeznos:tables-data-01 logicalFilePath:database\database-data\tables
+--changeSet abeznos:tables-data-01 logicalFilePath:database\database-data\tables-data
 insert into tables (number_of_table) values (4),
 (7),
 (9),

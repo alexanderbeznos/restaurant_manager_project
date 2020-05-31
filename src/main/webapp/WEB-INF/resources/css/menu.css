@@ -1,0 +1,67 @@
+.top-text {
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.table-hover tbody tr:hover {
+    color: #ecf0fe80;
+}
+
+.retDDD{
+    border: 5px solid #991022
+}
+
+.basket {
+    padding: 15px;
+    font-weight: 600;
+    background: rgba(138, 0, 32, 0.72);
+    /*position: fixed;*/
+    width: 300px;
+    min-height: calc(100% - 40px);
+    right: 0;
+    box-shadow: 2px 2px 8px rgba(0,0,0,.1);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.my-card {
+    display: inline-block;
+    width: 33%;
+    /*height: 250px;*/
+}
+
+.card-name {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(109, 237, 80, 0.6);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.card-bod {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0rem;
+}
+
+.card-bot {
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.height-min {
+    min-height: 466px;
+}
+
+/*.table-text {*/
+    /*font-weight: 400;*/
+    /*letter-spacing: 1px;*/
+/*}*/
+

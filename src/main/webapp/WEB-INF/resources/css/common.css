@@ -30,7 +30,7 @@ body {
 
 .center {
     padding: 30px;
-    /*border: 5px solid #991022;*/
+    border: 5px solid #991022;
     margin-left: 203px;
 }
 
@@ -42,5 +42,8 @@ body {
     margin-left: 30%;
 }
 
+.display-bl{
+    display: inline-block;
+}
 
 /*<img th:src="@{/static/images/logo-white.png}" width="168" height="28"  alt="Iconfinder"/>*/

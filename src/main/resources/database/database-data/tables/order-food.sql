@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeSet abeznos:order-food-01 logicalFilePath:database\database-data\tables
+--changeSet abeznos:order-food-01 logicalFilePath:database\database-data\order-food
 create table if not exists order_food(
 id serial primary key,
 description varchar(500),

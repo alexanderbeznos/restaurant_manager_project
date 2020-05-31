@@ -1,8 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/menu.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
 
     <meta charset="UTF-8">
     <title>Меню</title>
@@ -12,6 +16,135 @@
 
     <div th:replace="fragments/fragments.html :: side"></div>
 
+    <style th:inline="text">
+        .plus {
+            width: 24px;
+            height: 24px;
+            background:url([[@{/static/images/plus-white.png}]]) center center no-repeat;
+            background-size: 70% 70%;
+            padding: 0 0;
+            display:block;
+        }
+        .plus:hover {
+            background-image: url([[@{/static/images/plus-grey.png}]])
+        }
 
+        .minus {
+            width: 24px;
+            height: 24px;
+            background:url([[@{/static/images/minus-white.png}]]) center center no-repeat;
+            background-size: 70% 70%;
+            padding: 0 0;
+            display:block;
+        }
+        .minus:hover {
+            background-image: url([[@{/static/images/minus-grey.png}]])
+        }
+    </style>
+
+
+    <div class="center">
+        <div class="row">
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-12">
+                                <h1 class="top-text">Меню</h1>
+                            </div>
+
+                        </div>
+                        <div class="row pl-2">
+                            <div class="col-8">
+                                <a href="#" class="card-link">Острое</a>
+                                <a href="#" class="card-link">Для веганов</a>
+                                <a href="#" class="card-link">Без сахара</a>
+                                <a href="#" class="card-link">Без глютена</a>
+                            </div>
+                            <div class="col-4">
+                                <a href="#" class="card-link">По цене</a>
+                                <a href="#" class="card-link">По возрастанию</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div th:each="category : ${categories}">
+                            <form action="#" th:action="@{/menu/category/} + ${category.id}" method="get">
+                                <button type="submit" th:text="${category.name}" class="btn btn-primary width100 m-2"></button>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-10 height-min">
+                            <div class="my-card p-2" th:each="dish : ${dishes}">
+                                <div class= "card bg-primary">
+                                    <span th:text="${dish.name}" class="card-name">Название блюда</span>
+                                    <div class="card-bod">
+                                        <img style="height: 134px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
+                                    </div>
+                                    <div class="card-bot">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <span th:text="${dish.price} + ' руб.' ">Цена блюда</span>
+                                            </div>
+                                            <div class="col-2 p-1">
+                                                <a th:href="@{/logout}" class="plus"></a>
+                                            </div>
+                                            <div class="col-2 p-1">
+                                                <a th:href="@{/logout}" class="minus"></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div>
+                            <ul class="pagination pagination-sm m-2 ">
+                                <li class="page-item" th:each="number: ${#numbers.sequence(0,totalPages-1)}">
+                                    <a class="page-link" th:text="${number} + 1" th:onclick="|getDishes('page', '${number}')|"></a>
+                                </li>
+
+                                <!--<li class="page-item active">-->
+                                    <!--<a class="page-link" href="#">1</a>-->
+                                <!--</li>-->
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="basket">
+                    <h1 class="top-text">Корзина</h1>
+                    <ul>
+                        <li><a href="" >Суп</a></li>
+                        <li><a href="" >Гречка</a></li>
+                        <li><a href="" >Салат</a></li>
+                        <div sec:authorize="hasAuthority('ADMIN')">
+                            <a>Админ</a>
+                        </div>
+                        <div sec:authorize="hasAuthority('USER')">
+                            <a>Пользователь</a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
 </body>
 </html>
