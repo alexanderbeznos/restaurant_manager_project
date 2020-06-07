@@ -2,17 +2,19 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import project.entities.Category;
 import project.entities.Dish;
+import project.entities.common.FilterMenu;
 import project.service.CategoryService;
 import project.service.DishService;
+import project.service.FilterMenuService;
 
 import java.util.List;
 
@@ -31,15 +33,20 @@ public class MenuController {
 
     @GetMapping(value = "/category/{category}")
     public String getDishes(@PathVariable(value = "category") Long category,
-                            @RequestParam(value = "page", required = false, defaultValue = "0") int page, Model model) {
-        Category kind = categoryService.findById(category);
-        Page<Dish> pageDishes = dishService.findByCategory(kind, PageRequest.of(page, 6));
+                            @PageableDefault(page = 0, size = 6) Pageable pageable,
+                            FilterMenu filterMenu,
+                            Model model) {
+        filterMenu.setCategoryId(category);
+        FilterMenuService filterMenuService = new FilterMenuService(filterMenu);
+        Page<Dish> pageDishes = dishService.findAll(filterMenuService, pageable);
         List<Dish> dishes = pageDishes.getContent();
         int totalPages = pageDishes.getTotalPages();
         List<Category> allCategories = categoryService.findAll();
         model.addAttribute("dishes", dishes);
         model.addAttribute("categories", allCategories);
         model.addAttribute("totalPages", totalPages);
+        model.addAttribute("sort", pageable.getSort().toString());
+        model.addAttribute("filterMenu", filterMenu);
         return "menu";
     }
 

@@ -19,9 +19,9 @@ public class Dish {
     private String price;
     private String calories;
     private Boolean spicy;
-    private Boolean vegetarian;
-    private Boolean sugar;
-    private Boolean gluten;
+    private Boolean forVegans;
+    private Boolean withoutSugar;
+    private Boolean withoutGluten;
 
     public Dish() {
     }
@@ -74,18 +74,27 @@ public class Dish {
         return spicy;
     }
 
-    @Column(name = "vegetarian")
-    public Boolean getVegetarian() {
-        return vegetarian;
+    @Column(name = "for_vegans")
+    public Boolean getForVegans() {
+        return forVegans;
     }
 
-    @Column(name = "sugar")
-    public Boolean getSugar() {
-        return sugar;
+    @Column(name = "without_sugar")
+    public Boolean getWithoutSugar() {
+        return withoutSugar;
     }
 
-    @Column(name = "gluten")
-    public Boolean getGluten() {
-        return gluten;
+    @Column(name = "without_gluten")
+    public Boolean getWithoutGluten() {
+        return withoutGluten;
     }
+
+
+
+
+
+
+
+
+
 }

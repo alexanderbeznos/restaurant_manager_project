@@ -22,8 +22,8 @@ public class DishService {
 
 
     @Transactional
-    public Page<Dish> findByCategory(Category category, Pageable  pageable) {
-        return dishDao.findAllByCategory(category, pageable);
+    public Page<Dish> findAll(FilterMenuService filterMenuService, Pageable  pageable) {
+        return dishDao.findAll(filterMenuService, pageable);
     }
 
 

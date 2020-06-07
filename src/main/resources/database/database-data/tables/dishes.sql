@@ -9,12 +9,12 @@ menu_category_id integer references menu_category(id),
 description varchar(400),
 ingredients varchar(200),
 photo varchar(50),
-price varchar(50),
+price decimal,
 calories varchar(50),
-spicy boolean default false,
-vegetarian boolean default false,
-sugar boolean default false,
-gluten boolean default false
+spicy boolean,
+for_vegans boolean,
+without_sugar boolean,
+without_gluten boolean
 );
 
 comment on table dishes is 'Блюда';
@@ -35,10 +35,10 @@ comment on column dishes.calories is 'Калории на 100 грамм';
 
 comment on column dishes.spicy is 'Острое';
 
-comment on column dishes.vegetarian is 'Для веганов';
+comment on column dishes.for_vegans is 'Для веганов';
 
-comment on column dishes.sugar is 'Без сахара';
+comment on column dishes.without_sugar is 'Без сахара';
 
-comment on column dishes.gluten is 'Без глютена';
+comment on column dishes.without_gluten is 'Без глютена';
 
 
