@@ -1,5 +1,6 @@
 package project.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,34 +11,27 @@ import project.entities.User;
 import java.util.List;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserService(UserDao userDao, PasswordEncoder passwordEncoder) {
-        this.userDao = userDao;
-        this.passwordEncoder = passwordEncoder;
-    }
 
-    @Transactional
     public void saveAndFlush(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.saveAndFlush(user);
     }
 
-    @Transactional
     public void saveOrUpdate(User user) {
         userDao.saveAndFlush(user);
     }
 
-    @Transactional
     public List<User> findAll() {
         return userDao.findAll();
     }
 
-    @Transactional
     public User findByLogin(String login) {
         return userDao.findByLogin(login);
     }

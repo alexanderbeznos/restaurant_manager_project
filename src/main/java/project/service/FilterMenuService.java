@@ -18,6 +18,7 @@ public class FilterMenuService implements Specification<Dish> {
         this.filterMenu = filterMenu;
     }
 
+
     @Override
     public Predicate toPredicate(Root<Dish> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         Path<Boolean> spicy = root.get(Dish_.spicy);

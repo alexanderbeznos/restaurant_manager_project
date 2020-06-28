@@ -1,59 +1,99 @@
 package project.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import project.dto.ProcessOrderDto;
 import project.entities.Category;
 import project.entities.Dish;
+import project.entities.common.Cart;
 import project.entities.common.FilterMenu;
-import project.service.CategoryService;
-import project.service.DishService;
-import project.service.FilterMenuService;
+import project.service.*;
 
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+
 
 @Controller
 @RequestMapping(value = "/menu")
+@RequiredArgsConstructor
 public class MenuController {
 
     private final DishService dishService;
-    private final CategoryService categoryService;
-
-    @Autowired
-    public MenuController(DishService dishService, CategoryService categoryService) {
-        this.dishService = dishService;
-        this.categoryService = categoryService;
-    }
+    private final OrderFoodService orderFoodService;
+    private final ItemService itemService;
 
     @GetMapping(value = "/category/{category}")
     public String getDishes(@PathVariable(value = "category") Long category,
-                            @PageableDefault(page = 0, size = 6) Pageable pageable,
+                            @PageableDefault(page = 0, size = 6)
+                            @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                             FilterMenu filterMenu,
                             Model model) {
-        filterMenu.setCategoryId(category);
-        FilterMenuService filterMenuService = new FilterMenuService(filterMenu);
-        Page<Dish> pageDishes = dishService.findAll(filterMenuService, pageable);
-        List<Dish> dishes = pageDishes.getContent();
-        int totalPages = pageDishes.getTotalPages();
-        List<Category> allCategories = categoryService.findAll();
-        model.addAttribute("dishes", dishes);
-        model.addAttribute("categories", allCategories);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("sort", pageable.getSort().toString());
-        model.addAttribute("filterMenu", filterMenu);
+        dishService.getDishes(category, pageable, filterMenu, model);
         return "menu";
     }
 
+    @GetMapping(value = "/cart")
+    public String getCart(ModelMap modelMap) {
+        Cart cart = new Cart();
+        modelMap.put("cart", cart.findAll());
+        return "product/index";
+    }
 
+    @ResponseBody
+    @GetMapping(value = "/put/{id}")
+    public Cart put(@PathVariable("id") Long id, HttpSession session) {
+        return itemService.put(id, session);
+    }
 
+    @ResponseBody
+    @GetMapping(value = "/remove/{id}")
+    public Cart remove(@PathVariable("id") Long id, HttpSession session) {
+        return itemService.remove(id, session);
+    }
 
+    @ResponseBody
+    @GetMapping(value = "/show-cart-order")
+    public ProcessOrderDto showCartOrder(HttpSession session) {
+        return dishService.showCart(session);
+    }
 
+    @ResponseBody
+    @GetMapping(value = "/show-cart")
+    public Cart showCart(HttpSession session) {
+        return (Cart) session.getAttribute("cart");
+    }
 
+    @GetMapping(value = "/about-dish/{id}")
+    public String getStars(@PathVariable("id") Long id, Model model) {
+        return dishService.getStars(id, model);
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/rating-dish/{id}/{stars}")
+    public void getRatingDish(@PathVariable("id") Long id, @PathVariable("stars") Integer stars) {
+        dishService.getRating(id, stars);
+    }
+
+    @GetMapping(value = "/process-order")
+    public String processOrder() {
+        return "processOrder";
+    }
+
+    @PostMapping(value = "/success-order")
+    public String successOrder(@RequestParam Map<String, String> map, HttpSession session, Principal principal) {
+        orderFoodService.save(map, session, principal);
+        return "successOrder";
+    }
 
 }

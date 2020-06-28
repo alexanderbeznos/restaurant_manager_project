@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/aboutDish.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>О блюде</title>
+
+
+
+
+</head>
+<body>
+    <div th:replace="fragments/fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments/fragments.html :: side"></div>
+
+    <div class="center">
+        <div class="row">
+            <div id="showAdd">
+            </div>
+        </div>
+        <div class="row" >
+            <h4 class="top-text" th:text="${dish.name}">Название блюда</h4>
+        </div>
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-4">
+                <div class="card-bod">
+                    <img style="height: 400px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
+                </div>
+                <div >
+                    <a th:href="@{/menu/category/1}" class="card-name">
+                        <span>К меню</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <span th:text="|${dish.price}руб.|" >Цена</span>
+                        </div>
+                        <div class="row">
+                            <span th:text="|Описание: ${dish.description}|" >Описание</span>
+                        </div>
+                        <div class="row">
+                            <span th:text="|Ингредиенты: ${dish.ingredients}|" >Ингредиенты</span>
+                        </div>
+                        <div class="row">
+                            <span th:text="|Калорийность: ${dish.calories}ккал|" >Калорийность</span>
+                        </div>
+                        <a class="cursor" th:onclick="|putForShowRow(${dish.id})|" >Добавить в корзину</a>
+
+                        <h4>Оцените наши блюда!</h4>
+                        <input type="radio" name="gender" value="other"> Другой
+                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star5.png}" alt="Card image">
+                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star4.png}" alt="Card image">
+                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star3.png}" alt="Card image">
+                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star2.png}" alt="Card image">
+                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star1.png}" alt="Card image">
+
+                        <div class="rating-area">
+                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 5)|" id="star-5" name="rating" value="5">
+                            <label for="star-5" title="Оценка «5»"></label>
+                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 4)|" id="star-4" name="rating" value="4">
+                            <label for="star-4" title="Оценка «4»"></label>
+                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 3)|" id="star-3" name="rating" value="3">
+                            <label for="star-3" title="Оценка «3»"></label>
+                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 2)|" id="star-2" name="rating" value="2">
+                            <label for="star-2" title="Оценка «2»"></label>
+                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 1)|" id="star-1" name="rating" value="1">
+                            <label for="star-1" title="Оценка «1»"></label>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

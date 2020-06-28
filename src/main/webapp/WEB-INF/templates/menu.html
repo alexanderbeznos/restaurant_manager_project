@@ -39,6 +39,18 @@
             cursor: pointer;
         }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: './../../menu/show-cart',
+                dataType: 'json',
+                success: function(data) {
+                    showCart(data)
+                }});
+        })
+    </script>
+
 </head>
 <body>
     <div th:replace="fragments/fragments.html :: topMenu"></div>
@@ -55,7 +67,6 @@
                             <div class="col-12">
                                 <h1 class="top-text">Меню</h1>
                             </div>
-
                         </div>
                         <div class="row pl-2">
                             <div class="col-8">
@@ -65,7 +76,7 @@
                                 <label><input class="mr-1" type="checkbox" id="withoutGluten" th:checked="*{filterMenu.withoutGluten}" th:onchange="checkbox('withoutGluten')"/>Без глютена</label>
                             </div>
                             <div class="col-4">
-                                <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'name: DESC' || sort == 'name: ASC'}" th:onclick="getSort('price', 'desc')" >
+                                <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'name: DESC' || sort == 'name: ASC'|| sort == 'id: ASC'}" th:onclick="getSort('price', 'desc')" >
                                 <span class="mr-1">По цене </span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
                             </a>
@@ -78,7 +89,7 @@
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
                                 </a>
 
-                                <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'price: DESC' || sort == 'price: ASC'}" th:onclick="getSort('name', 'desc')" >
+                                <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'price: DESC' || sort == 'price: ASC' || sort == 'id: ASC'}" th:onclick="getSort('name', 'desc')" >
                                     <span class="mr-1">А-Я</span>
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
                                 </a>
@@ -108,7 +119,9 @@
                     <div class="col-10 height-min">
                             <div class="my-card p-2" th:each="dish : ${dishes}">
                                 <div class= "card bg-primary">
-                                    <span th:text="${dish.name}" class="card-name">Название блюда</span>
+                                    <a th:href="@{/menu/about-dish/} + ${dish.id}" class="card-name">
+                                        <span th:text="${dish.name}" >Название блюда</span>
+                                    </a>
                                     <div class="card-bod">
                                         <img style="height: 134px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
                                     </div>
@@ -118,10 +131,10 @@
                                                 <span th:text="${dish.price} + ' руб.' ">Цена блюда</span>
                                             </div>
                                             <div class="col-2 p-1">
-                                                <a th:href="@{/logout}" class="plus"></a>
+                                                <a th:onclick="|put(${dish.id})|" class="plus"></a>
                                             </div>
                                             <div class="col-2 p-1">
-                                                <a th:href="@{/logout}" class="minus"></a>
+                                                <a th:onclick="|remove(${dish.id})|" class="minus"></a>
                                             </div>
                                         </div>
 
@@ -135,7 +148,7 @@
                     <div class="col-10">
                         <div>
                             <ul class="pagination pagination-sm m-2 ">
-                                <li class="page-item" th:each="number: ${#numbers.sequence(0,totalPages-1)}">
+                                <li class="page-item" th:each="number: ${#numbers.sequence(0, totalPages != 0 ? totalPages-1 : 0)}">
                                     <a class="page-link" th:text="${number} + 1" th:onclick="|getDishes('page', '${number}')|"></a>
                                 </li>
                             </ul>
@@ -146,24 +159,11 @@
             <div class="col-3">
                 <div class="basket">
                     <h1 class="top-text">Корзина</h1>
-                    <ul>
-                        <li><a href="" >Суп</a></li>
-                        <li><a href="" >Гречка</a></li>
-                        <li><a href="" >Салат</a></li>
-                        <div sec:authorize="hasAuthority('ADMIN')">
-                            <a>Админ</a>
-                        </div>
-                        <div sec:authorize="hasAuthority('USER')">
-                            <a>Пользователь</a>
-                        </div>
-                    </ul>
+                    <div id="cart" >
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
-
 
     </div>
 </body>

@@ -16,12 +16,17 @@ public class Dish {
     private String description;
     private String ingredients;
     private String photo;
-    private String price;
+    private Integer price;
     private String calories;
     private Boolean spicy;
     private Boolean forVegans;
     private Boolean withoutSugar;
     private Boolean withoutGluten;
+    private Integer starOne;
+    private Integer starTwo;
+    private Integer starThree;
+    private Integer starFour;
+    private Integer starFive;
 
     public Dish() {
     }
@@ -60,7 +65,7 @@ public class Dish {
     }
 
     @Column(name = "price")
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -89,12 +94,28 @@ public class Dish {
         return withoutGluten;
     }
 
+    @Column(name = "star_one")
+    public int getStarOne() {
+        return starOne;
+    }
 
+    @Column(name = "star_two")
+    public int getStarTwo() {
+        return starTwo;
+    }
 
+    @Column(name = "star_three")
+    public int getStarThree() {
+        return starThree;
+    }
 
+    @Column(name = "star_four")
+    public int getStarFour() {
+        return starFour;
+    }
 
-
-
-
-
+    @Column(name = "star_five")
+    public int getStarFive() {
+        return starFive;
+    }
 }

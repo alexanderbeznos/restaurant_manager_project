@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class UserSettings {
 
     private Long id;
-    private String telephone;
+    private String phone;
     private String address;
 
     public UserSettings() {
@@ -26,9 +26,9 @@ public class UserSettings {
     }
 
     @Size(max = 50, message = "Максимум 50 символов")
-    @Column(name = "telephone")
-    public String getTelephone() {
-        return telephone;
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
     }
 
     @Size(max = 50, message = "Максимум 50 символов")

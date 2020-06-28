@@ -11,10 +11,12 @@ import project.dao.RolesDao;
 import project.entities.Dish;
 import project.entities.Roles;
 import project.entities.UserSettings;
+import project.entities.common.Cart;
 import project.security.UserValidator;
 import project.entities.User;
 import project.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
@@ -69,8 +71,18 @@ public class AuthenticController {
         return "login";
     }
 
+//    @GetMapping(value = "")
+//    public String getMenu() {
+//        return "redirect: menu/category/1";
+//    }
+
     @GetMapping(value = "")
-    public String getMenu() {
+    public String getMenu(HttpSession session) {
+        //TODO Move to sessionListener
+        if (session.getAttribute("cart") == null) {
+            Cart cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
         return "redirect: menu/category/1";
     }
 

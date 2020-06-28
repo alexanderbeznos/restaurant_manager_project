@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
 --changeSet abeznos:order-food-data-01 logicalFilePath:database\database-data\order-food-data
-insert into order_food (description, reserve_tables_id, user_id) values ('Борщ, пюре, котлета, оливье', 1, 1),
-('Суп, гречка, рыба, овощной салат', 2, 2),
-('Щи, плов, мясо, греческий салат, чай', 3, 3);
+insert into order_food (user_id, name_of_user, address, phone, description) values (1, '', '', '', 'Свечи зажгите красиво'),
+(1, '', '', '', 'Красные салфетки, пожалуйста'),
+(2, '', '', '', 'Цветы какие-то на столе, пожалуйста');

@@ -3,8 +3,11 @@ package project.config;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import project.entities.common.SessionListener;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 //@Order(1)
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -35,4 +38,10 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         cef.setForceEncoding(false);
         return new Filter[] {cef, new HiddenHttpMethodFilter()};
     }
+
+//    @Override
+//    public void onStartup(ServletContext servletContext) throws ServletException {
+//        super.onStartup(servletContext);
+//        servletContext.addListener(new SessionListener());
+//    }
 }

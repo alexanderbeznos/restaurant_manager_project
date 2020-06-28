@@ -28,9 +28,9 @@
                         <div class="invalid-feedback " th:if="${firstNameError != null}" th:text="${firstNameError}"></div>
                     </div>
                     <div class="col">
-                        <label for="telephone">Телефон:</label>
-                        <input type="text" id="telephone" th:field="*{userSettings.telephone}" th:class="${userSettingstelephoneError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
-                        <div class="invalid-feedback" th:if="${userSettingstelephoneError != null}" th:text="${userSettingstelephoneError}"></div>
+                        <label for="phone">Телефон:</label>
+                        <input type="text" id="phone" th:field="*{userSettings.phone}" th:class="${userSettingsPhoneError != null} ? 'width100 form-control is-invalid' : 'width100 form-control'">
+                        <div class="invalid-feedback" th:if="${userSettingsPhoneError != null}" th:text="${userSettingsPhoneError}"></div>
                     </div>
                 </div>
                 <div class="spacing15"></div>

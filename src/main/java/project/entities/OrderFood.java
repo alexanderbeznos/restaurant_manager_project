@@ -2,6 +2,7 @@ package project.entities;
 
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Entity
@@ -10,9 +11,12 @@ import javax.persistence.*;
 public class OrderFood {
 
     private Long id;
-    private String description;
-    private ReserveTables reserveTables;
     private User user;
+    private String nameOfUser;
+    private String address;
+    private String phone;
+    private String description;
+    private List<Item> listItems;
 
     public OrderFood() {
     }
@@ -29,15 +33,29 @@ public class OrderFood {
         return description;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reserve_tables_id")
-    public ReserveTables getReserveTables() {
-        return reserveTables;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
+    }
+
+    @Column(name = "name_of_user")
+    public String getNameOfUser() {
+        return nameOfUser;
+    }
+
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
+    }
+
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    public List<Item> getListItems() {
+        return listItems;
     }
 }

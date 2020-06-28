@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/successOrder.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>О блюде</title>
+-`
+
+
+
+</head>
+<body>
+    <div th:replace="fragments/fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments/fragments.html :: side"></div>
+
+    <div class="center">
+        <div class="row top-text">
+            <h4 class="top-text">Заказ успешно оформлен!</h4>
+        </div>
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-10">
+                <form th:action="@{/}" method="get">
+                    <button type="submit" class="btn btn-secondary width100">К меню</button>
+                </form>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</body>
+</html>
