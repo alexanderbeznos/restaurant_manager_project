@@ -1,23 +1,30 @@
 package project.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 
 @Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "reserve_tables")
 @SequenceGenerator(name = "reserve_tables_id_seq", sequenceName = "reserve_tables_id_seq", allocationSize = 1)
 public class ReserveTables {
 
     private Long id;
-    private String startTime;
-    private String finishTime;
-    private Tables table;
-    private User user;
+    private LocalDateTime startTime;
+    private LocalDateTime finishTime;
+    private Integer numberOfPeople;
+    private Integer tableNumber;
+    private Long user;
 
     public ReserveTables() {
     }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserve_tables_id_seq")
@@ -27,24 +34,32 @@ public class ReserveTables {
     }
 
     @Column(name = "start_time")
-    public String getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
     @Column(name = "finish_time")
-    public String getFinishTime() {
+    public LocalDateTime getFinishTime() {
         return finishTime;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tables_id")
-    public Tables getTable() {
-        return table;
+    @Column(name = "number_of_people")
+    public Integer getNumberOfPeople() {
+        return numberOfPeople;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    public User getUser() {
+
+    @Column(name = "table_number")
+    public Integer getTableNumber() {
+        return tableNumber;
+    }
+
+    @Column(name = "user_id")
+    public Long getUser() {
         return user;
     }
 }
+
+
+
+

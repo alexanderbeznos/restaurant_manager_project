@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/restaurant.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/restaurant.js}"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/datepicker.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/datepicker.js}"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Ресторан</title>
+
+    <style th:inline="text">
+        .plan {
+            background-image: url([[@{/static/images/plan.png}]]);
+            background-size: 100% 100%;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div th:replace="fragments/fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments/fragments.html :: side"></div>
+
+    <div class="center">
+        <div class="row top-text">
+
+        </div>
+        <div class="row">
+            <div class="col-9">
+                <div id="showTables">
+                    <div class="area plan">
+                        <div id="table1" onclick="showInfoAboutTable(id)">
+
+                        </div>
+                        <div id="table2" onclick="showInfoAboutTable(id)">
+
+                        </div>
+                        <div id="table15" onclick="showInfoAboutTable(id)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <form id="dateForm" >
+                        <input required id="startDate" type='text' th:name="startDate" class='datepicker-here' data-timepicker="true"/>
+                        <input required id="finishDate" type='text' th:name="finishDate" class='datepicker-here' data-timepicker="true"/>
+                        <div class="seats">
+                            <label>Количество мест: </label>
+                            <select id="seats">
+                                <option value="2">2</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="10">10</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <br>
+                        <button th:onclick="requestShowTables()" type="button" class="btn btn-secondary width100">Показать</button>
+                    </form>
+                </div>
+                <div class="row">
+                    <form >
+                        <div class="row">
+                            <span>Выбор столика</span>
+                        </div>
+                        <div class="row" id="numberOfTable">
+                            <div class="col-6">
+                                <span>Столик</span>
+                            </div>
+                            <div class="col-6">
+
+                            </div>
+                        </div>
+                        <div class="row" style="height: 22px" id="countOfGuest">
+                            <div class="col-8">
+                                <span>Кол-во гостей:</span>
+                            </div>
+                            <div class="col-4">
+
+                            </div>
+                        </div>
+                        <div class="row" id="notFindTime" style="height: 44px" >
+
+                        </div>
+                        <div class="row">
+                            <button th:onclick="chooseTable()" type="button" class="btn btn-secondary width100">Зарезервировать</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</body>
+</html>

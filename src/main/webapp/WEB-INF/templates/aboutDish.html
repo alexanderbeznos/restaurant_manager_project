@@ -62,12 +62,12 @@
                         <a class="cursor" th:onclick="|putForShowRow(${dish.id})|" >Добавить в корзину</a>
 
                         <h4>Оцените наши блюда!</h4>
-                        <input type="radio" name="gender" value="other"> Другой
-                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star5.png}" alt="Card image">
-                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star4.png}" alt="Card image">
-                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star3.png}" alt="Card image">
-                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star2.png}" alt="Card image">
-                        <img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star1.png}" alt="Card image">
+                        <!--<input type="radio" name="gender" value="other"> Другой-->
+                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star5.png}" alt="Card image">-->
+                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star4.png}" alt="Card image">-->
+                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star3.png}" alt="Card image">-->
+                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star2.png}" alt="Card image">-->
+                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star1.png}" alt="Card image">-->
 
                         <div class="rating-area">
                             <input type="radio" th:onclick="|ratingDish(${dish.id}, 5)|" id="star-5" name="rating" value="5">

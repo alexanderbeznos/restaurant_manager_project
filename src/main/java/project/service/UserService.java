@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import project.dao.UserDao;
 import project.entities.User;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -34,5 +36,10 @@ public class UserService {
 
     public User findByLogin(String login) {
         return userDao.findByLogin(login);
+    }
+
+    public User findById(Long userId) {
+        Optional<User> optional = userDao.findById(userId);
+        return optional.orElseThrow(() -> new EntityNotFoundException(String.format("User with id %s is not found", userId)));
     }
 }

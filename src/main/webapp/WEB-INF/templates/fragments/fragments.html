@@ -97,11 +97,12 @@
     <div th:fragment="side">
         <div class="category-wrap">
             <ul>
-                <li><a href="" >Меню</a></li>
-                <li><a href="" >Ресторан</a></li>
-                <li><a href="" >Заказать еду</a></li>
-                <li><a href="" >Журналы</a></li>
-                <li><a href="" >Картинки</a></li>
+                <li><a th:href="@{/}">Меню</a></li>
+                <li><a th:href="@{/restaurant}">Ресторан</a></li>
+                <li><a th:href="@{/reservation}">Бронь</a></li>
+                <li><a th:href="@{/}" >Заказать еду</a></li>
+                <li><a th:href="@{/}" >Журналы</a></li>
+                <li><a th:href="@{/}" >Картинки</a></li>
 
                 <div sec:authorize="hasAuthority('ADMIN')">
                     <a>Админ</a>

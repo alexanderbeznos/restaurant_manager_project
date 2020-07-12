@@ -1,0 +1,74 @@
+.top-text {
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.width100 {
+    width:100%
+}
+
+.red {
+    background: rgba(153, 4, 10, 0.25);
+}
+
+.green {
+    background: rgba(30, 237, 35, 0.25);
+}
+
+.area {
+    overflow: hidden;
+    width: 900px;
+    height: 450px;
+    margin: 0 0;
+    position: relative;
+
+}
+
+.seats {
+    background: #66869D;
+    /*height: 55px;*/
+    width:250px;
+    border-radius: 15px;
+    padding:20px;
+    font-size:22px;
+    color:#fff;
+}
+
+
+
+#table1, #table2, #table15 {
+    position: absolute;
+    float: left;
+    /*background: transparent;
+    border: solid 1px #ece4ed; /* Параметры рамки */
+    cursor: pointer
+}
+
+#table1 {
+    left: 19px;
+    top: 37px;
+    width: 56px;
+    height: 38px;
+}
+
+#table2 {
+    left: 18px;
+    top: 107px;
+    width: 56px;
+    height: 38px;
+}
+
+#table15 {
+    left: 326px;
+    top: 347px;
+    width: 47px;
+    height: 48px;
+}
+
+
+#table1:hover, #table2:hover, #table15:hover {
+    background: rgba(27, 28, 188, 0.25);
+}
+

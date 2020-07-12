@@ -1,8 +1,6 @@
 package project.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -12,15 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.dto.ProcessOrderDto;
-import project.entities.Category;
-import project.entities.Dish;
 import project.entities.common.Cart;
 import project.entities.common.FilterMenu;
 import project.service.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 
@@ -95,5 +90,4 @@ public class MenuController {
         orderFoodService.save(map, session, principal);
         return "successOrder";
     }
-
 }

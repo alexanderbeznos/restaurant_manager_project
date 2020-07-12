@@ -12,6 +12,8 @@ public class Tables {
 
     private Long id;
     private Integer numberOfTable;
+    private Integer seats;
+
 
     public Tables() {
     }
@@ -26,5 +28,10 @@ public class Tables {
     @Column(name = "number_of_table")
     public Integer getNumberOfTable() {
         return numberOfTable;
+    }
+
+    @Column(name = "seats")
+    public Integer getSeats() {
+        return seats;
     }
 }
