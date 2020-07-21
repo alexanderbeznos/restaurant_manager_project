@@ -12,6 +12,7 @@ import java.util.List;
 public class Cart {
 
     private List<Item> products = new ArrayList<>();
+    private boolean reserved;
 
     public List<Item> findAll() {
         return this.products;

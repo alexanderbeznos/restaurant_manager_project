@@ -3,10 +3,12 @@ package project.entities;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.List;
 
 @Setter
 @AllArgsConstructor
@@ -21,6 +23,8 @@ public class ReserveTables {
     private Integer numberOfPeople;
     private Integer tableNumber;
     private Long user;
+    private String comment;
+    private List<OrderFood> orderFood;
 
     public ReserveTables() {
     }
@@ -57,6 +61,16 @@ public class ReserveTables {
     @Column(name = "user_id")
     public Long getUser() {
         return user;
+    }
+
+    @Column(name = "comment")
+    public String getComment() {
+        return comment;
+    }
+
+    @OneToMany(mappedBy = "reserveTable", cascade = CascadeType.ALL, orphanRemoval = true)
+    public List<OrderFood> getOrderFood() {
+        return orderFood;
     }
 }
 

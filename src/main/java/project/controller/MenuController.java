@@ -47,14 +47,14 @@ public class MenuController {
 
     @ResponseBody
     @GetMapping(value = "/put/{id}")
-    public Cart put(@PathVariable("id") Long id, HttpSession session) {
-        return itemService.put(id, session);
+    public Cart put(@PathVariable("id") Long id, HttpSession session, Principal principal) {
+        return itemService.put(id, session, principal);
     }
 
     @ResponseBody
     @GetMapping(value = "/remove/{id}")
-    public Cart remove(@PathVariable("id") Long id, HttpSession session) {
-        return itemService.remove(id, session);
+    public Cart remove(@PathVariable("id") Long id, HttpSession session, Principal principal) {
+        return itemService.remove(id, session, principal);
     }
 
     @ResponseBody

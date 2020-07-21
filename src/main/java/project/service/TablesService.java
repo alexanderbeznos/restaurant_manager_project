@@ -31,9 +31,8 @@ public class TablesService {
 
 
     public List<TableShowDto> showTables(TableDto tableDto) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        LocalDateTime startDate = LocalDateTime.parse(tableDto.getStartDate(), formatter);
-        LocalDateTime finishDate = LocalDateTime.parse(tableDto.getFinishDate(), formatter);
+        LocalDateTime startDate = changeStringToLocalDateTime(tableDto.getStartDate());
+        LocalDateTime finishDate = changeStringToLocalDateTime(tableDto.getFinishDate());
         List<Tables> allTables = tablesDao.findAll();
         List<Integer> allTablesInt = allTables.stream()
                 .filter(f -> f.getSeats() >= tableDto.getSeats())
@@ -46,8 +45,16 @@ public class TablesService {
                 .distinct()
                 .collect(Collectors.toList());
         List<TableShowDto> listTables = new ArrayList<>();
-        allTables.forEach(f -> listTables.add(new TableShowDto(Integer.toString(f.getNumberOfTable()), !distinctTables.contains(f.getNumberOfTable()))));
+        allTables.forEach(f -> {
+            boolean ready = !distinctTables.contains(f.getNumberOfTable()) && tableDto.getSeats() <= f.getSeats();
+            listTables.add(new TableShowDto(Integer.toString(f.getNumberOfTable()), ready));
+        });
         return listTables;
+    }
+
+    public LocalDateTime changeStringToLocalDateTime(String time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        return LocalDateTime.parse(time, formatter);
     }
 
     public InfoAboutTableDto getInfoAboutTable(String id) {
@@ -57,9 +64,8 @@ public class TablesService {
     }
 
     public FindTable getReservationTable(TableDto tableDto, Principal principal) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        LocalDateTime startDate = LocalDateTime.parse(tableDto.getStartDate(), formatter);
-        LocalDateTime finishDate = LocalDateTime.parse(tableDto.getFinishDate(), formatter);
+        LocalDateTime startDate = changeStringToLocalDateTime(tableDto.getStartDate());
+        LocalDateTime finishDate = changeStringToLocalDateTime(tableDto.getFinishDate());
         List<Integer> allTablesInt = new ArrayList<>();
         allTablesInt.add(tableDto.getNumberTable());
         List<ReserveTables> reserveTable = reserveTablesDao.findAllByStartDateFinishDateSeats(startDate, finishDate, allTablesInt);
@@ -70,7 +76,7 @@ public class TablesService {
         }
         String login = principal.getName();
         User user = userService.findByLogin(login);
-        ReserveTables save = reserveTablesDao.save(new ReserveTables(null, startDate, finishDate, tableDto.getSeats(), tableDto.getNumberTable(), user.getId()));
+        ReserveTables save = reserveTablesDao.save(new ReserveTables(null, startDate, finishDate, tableDto.getSeats(), tableDto.getNumberTable(), user.getId(), tableDto.getComment(), null));
         findTable.setReservationId(save.getId());
         return findTable;
     }

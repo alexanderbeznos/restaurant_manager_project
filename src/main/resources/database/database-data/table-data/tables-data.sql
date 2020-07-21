@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeSet abeznos:tables-data-01 logicalFilePath:database\database-data\tables-data
-insert into tables (number_of_table, seats) values (1, 5),
+INSERT INTO tables (number_of_table, seats) values (1, 5),
 (2, 4),
 (3, 2),
 (4, 4),

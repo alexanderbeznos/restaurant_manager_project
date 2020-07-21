@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/ordering.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/restaurant.js}"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/datepicker.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/datepicker.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>Предзаказ</title>
+
+    <!--<script>-->
+        <!--$(document).ready(function () {-->
+            <!--$.ajax({-->
+                <!--url: './../reservation/show-cart-order',-->
+                <!--dataType: 'json',-->
+                <!--success: function(data) {-->
+                    <!--showOrder(data)-->
+                <!--}});-->
+        <!--})-->
+    <!--</script>-->
+
+
+</head>
+<body>
+<div th:replace="fragments/fragments.html :: topMenu"></div>
+
+<div th:replace="fragments/fragments.html :: side"></div>
+
+<div class="center">
+    <div class="children">
+        <h5 class="top-text">Ваш предзаказ</h5>
+        <br>
+        <span th:text="${head}"></span>
+        <table class="table table-hover text-light table-text" >
+            <tr>
+                <th>Название блюда</th>
+                <th>Стоимость</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+                <th>Время подачи</th>
+                <th>Комментарий</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.dish.name}"></td>
+                <td th:text="${product.dish.price}"></td>
+                <td th:text="${product.count}"></td>
+                <td th:text="${product.dish.price} * ${product.count}"></td>
+                <td>
+                    <!--<input required th:id="${product.id}" type='text' th:name="1" class='datepicker-here' data-timepicker="true"/>-->
+                    <input required th:id="${product.id}" type='text' th:name="1" class='datepicker-here' data-timepicker="true"/>
+                </td>
+                <td>
+                    <input type="text" id="comment" name="login">
+                </td>
+                <td th:text="${product.dish.id}" style="display:none;"></td>
+            </tr>
+        </table>
+        <!--<input type="hidden" id="rew" th:field="${startTime}" >-->
+        <button th:onclick="|orderingCheckTime(${reserveTablesId})|" type="button" class="btn btn-secondary width100">Подтверждаю</button>
+    </div>
+</div>
+</body>
+</html>

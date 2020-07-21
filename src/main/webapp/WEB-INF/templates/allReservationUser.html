@@ -4,7 +4,7 @@
 <head>
     <th:block th:include="fragments/fragments.html :: head"></th:block>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/successReservation.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/allReservationUser.css}">
 
     <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
 
@@ -50,7 +50,8 @@
                 <td th:text="${reserve.numberOfPeople}"></td>
                 <td >
                     <a th:href="@{/reservation/} + ${reserve.reservedId}" class="navbar-brand delete"></a>
-                    <a th:href="@{/restaurant/} + ${reserve.reservedId} + '/order'" class="navbar-brand">Предзаказ</a>
+                    <a th:href="@{/}" class="navbar-brand">Предзаказ</a>
+                    <!--<a th:href="@{/restaurant/} + ${reserve.reservedId} + '/order'" class="navbar-brand">Предзаказ</a>-->
                 </td>
             </tr>
         </table>

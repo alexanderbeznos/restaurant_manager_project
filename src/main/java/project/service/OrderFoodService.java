@@ -9,6 +9,7 @@ import project.entities.Item;
 import project.entities.OrderFood;
 import project.entities.User;
 import project.entities.common.Cart;
+import project.entities.common.OrderType;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -29,24 +30,27 @@ public class OrderFoodService {
     }
 
     public void save(Map<String, String> map, HttpSession session, Principal principal) {
-        String login = principal.getName();
-        User user = userService.findByLogin(login);
         Cart cart = (Cart) session.getAttribute("cart");
         OrderFood orderFood = new OrderFood();
-        orderFood.setUser(user);
+        orderFood.setOrderType(OrderType.D);
+        if (principal != null) {
+            String login = principal.getName();
+            User user = userService.findByLogin(login);
+            orderFood.setUser(user);
+
+        }
         orderFood.setNameOfUser(map.remove("name"));
         orderFood.setPhone(map.remove("phone"));
         orderFood.setAddress(map.remove("address"));
+        orderFood.setDescription(map.remove("comment"));
+
         for (int i = 0; i < map.size(); i++) {
             Item item = cart.getProducts().get(i);
             item.setComment(map.get(String.valueOf(i)));
             item.setOrder(orderFood);
         }
-        orderFood.setListItems(cart.getProducts());
+        orderFood.setItems(cart.getProducts());
         orderFoodDao.saveAndFlush(orderFood);
         cart.setProducts(new ArrayList<>());
     }
-
-
-
 }

@@ -101,6 +101,7 @@ function showInfoAboutTable(id) {
         success: function (data) {
             changeNumberTable(data);
             countOfGuest(data);
+            changeComment();
         }
     })
 }
@@ -136,10 +137,10 @@ function countOfGuest(data) {
     let htmlMiddle;
     let htmlFinish;
     htmlStart = `
-                <div class="col-8">
+                <div class="col-6">
                     <span>Кол-во гостей:</span>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <select id="amountPeople">                           
         `;
     arrayProducts.push(htmlStart);
@@ -156,6 +157,21 @@ function countOfGuest(data) {
     arrayProducts.push(htmlFinish);
     element.innerHTML = arrayProducts.join('');
 }
+
+function changeComment() {
+    let element = document.getElementById("changeComment");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+    let arrayProducts = [];
+    let htmlStart;
+    htmlStart = `
+            <input type="text" id="commentReserve">
+        `;
+    arrayProducts.push(htmlStart);
+    element.innerHTML = arrayProducts.join('');
+}
+
 
 function aboutTables() {
     let startDateTable = document.getElementById("startDate").value;
@@ -199,11 +215,13 @@ function aboutTables() {
     }
     let seats = document.getElementById("amountPeople").value;
     let numberTable = document.getElementById("numberTable").innerText;
+    let comment = document.getElementById("commentReserve").value;
     return {
         startDate: startDateTable,
         finishDate: finishDateTable,
         seats: seats,
-        numberTable: numberTable
+        numberTable: numberTable,
+        comment: comment
     };
 }
 
@@ -236,8 +254,80 @@ function afterChooseTable(data) {
         arrayProducts.push(htmlTable);
         element.innerHTML = arrayProducts.join('');
     } else {
-        debugger
         let url = window.location.href;
         window.location.href = url + "/success-reservation/" + data['reservationId']
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function orderingCheckTime(reserveTablesId) {
+    let orderingObj = aboutOrdering(reserveTablesId);
+
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url:'./../../reservation/order-success',
+        data: JSON.stringify(orderingObj),
+        datatype: 'json',
+        success: function (data) {
+            afterOrdering(data);
+        }
+    })
+}
+
+function aboutOrdering(reserveTablesId) {
+    let array = document.getElementsByTagName("tr");
+    let list = [];
+    for(let j = 1; j < array.length; j++) {
+        let row = array.item(j).children;
+        let dishId = row[6].outerText;
+        let timeDish = row[4].children[0].value;
+        let comment = row[5].children[0].value;
+
+        let name = row[0].outerText;
+        let price = row[1].outerText;
+        let count = row[2].outerText;
+        let sum = row[3].outerText;
+
+        let dish = {
+            dishId: dishId,
+            timeDish: timeDish,
+            comment: comment,
+            reserveTablesId: reserveTablesId
+        };
+        list.push(dish);
+    }
+    return list;
+}
+
+function afterOrdering(data) {
+    if (!data.success) {
+        alert('Выберите время подачи блюда в забронированное время');
+    } else {
+        window.location.href = "http://localhost:8080/restaurant_manager_project/menu/category/1";
     }
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 import project.entities.Dish;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Setter
 @Entity
@@ -16,6 +17,7 @@ public class Item {
     private Dish dish;
     private int count;
     private OrderFood order;
+    private LocalDateTime servingTime;
     private String comment;
     private Boolean done;
 
@@ -50,6 +52,11 @@ public class Item {
     @JoinColumn(name = "order_food_id")
     public OrderFood getOrder() {
         return order;
+    }
+
+    @Column(name = "serving_time")
+    public LocalDateTime getServingTime() {
+        return servingTime;
     }
 
     @Column(name = "comment")

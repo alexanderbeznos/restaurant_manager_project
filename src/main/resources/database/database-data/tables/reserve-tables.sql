@@ -7,7 +7,8 @@ start_time timestamp,
 finish_time timestamp,
 number_of_people integer,
 table_number integer,
-user_id integer
+user_id integer,
+comment varchar
 );
 
 comment on table reserve_tables is 'Резервирование столиков';
@@ -23,3 +24,5 @@ comment on column reserve_tables.number_of_people is 'Количество лю�
 comment on column reserve_tables.table_number is 'Номер столика';
 
 comment on column reserve_tables.user_id is 'ID пользователя';
+
+comment on column reserve_tables.comment is 'Комментарий к броне столика';

@@ -5,18 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.security.PrivateKey;
-
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TableDto {
+public class OrderingSuccessDto {
 
-    private String startDate;
-    private String finishDate;
-    private Integer seats;
-    private Integer numberTable;
+    private Long dishId;
+    private String timeDish;
     private String comment;
+    private Long reserveTablesId;
 }

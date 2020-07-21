@@ -13,6 +13,8 @@
     <meta charset="UTF-8">
     <title>Предзаказ</title>
 
+
+
 </head>
 <body>
 <div th:replace="fragments/fragments.html :: topMenu"></div>
@@ -21,7 +23,29 @@
 
 <div class="center">
     <div class="children">
-        <span>pre</span>
+        <h5 class="top-text">Привязка</h5>
+        <br>
+        <table class="table table-hover text-light table-text" >
+            <tr>
+                <th>Время от</th>
+                <th>Время до</th>
+                <th>Номер столика</th>
+                <th>Количество человек</th>
+                <th>Привязать</th>
+            </tr>
+            <tr th:each="reserve : ${reserves}">
+                <td th:text="${reserve.startDate}"></td>
+                <td th:text="${reserve.finishDate}"></td>
+                <td th:text="${reserve.tableNumber}"></td>
+                <td th:text="${reserve.numberOfPeople}"></td>
+                <td >
+                    <a th:href="@{/reservation/ordering/} + ${reserve.reservedId}" class="navbar-brand delete">Привязать</a>
+                    <!--<a th:href="@{/reservation/} + ${reserve.reservedId}" class="navbar-brand delete"></a>-->
+                    <!--<a th:href="@{/}" class="navbar-brand">Предзаказ</a>-->
+                    <!--<a th:href="@{/restaurant/} + ${reserve.reservedId} + '/order'" class="navbar-brand">Предзаказ</a>-->
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>

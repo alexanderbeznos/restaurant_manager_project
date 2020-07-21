@@ -54,10 +54,4 @@ public class RestaurantController {
         return reserveTablesService.getSuccessReservePage(id, model);
 
     }
-
-    @GetMapping(value = "/{reserveId}/order")
-    public String getPreOrder() {
-        return "preOrder";
-    }
-
 }

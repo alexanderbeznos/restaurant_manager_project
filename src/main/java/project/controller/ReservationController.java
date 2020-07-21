@@ -3,12 +3,12 @@ package project.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import project.entities.ReserveTables;
+import org.springframework.web.bind.annotation.*;
+import project.dto.AfterOrderingDto;
+import project.dto.OrderingSuccessDto;
 import project.service.ReserveTablesService;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
@@ -27,5 +27,21 @@ public class ReservationController {
     @GetMapping(value = "/{id}")
     public String getReservation(@PathVariable("id") Long id, Model model, Principal principal) {
         return reserveTablesService.deleteReserve(id, model, principal);
+    }
+
+    @GetMapping(value = "/pre-order")
+    public String getPreOrder(Model model, Principal principal) {
+        return reserveTablesService.getPreReserve(model, principal);
+    }
+
+    @GetMapping(value = "/ordering/{reserveId}")
+    public String getPreOrder(@PathVariable("reserveId") Long id, Model model, HttpSession session) {
+        return reserveTablesService.ordering(id, model, session);
+    }
+
+    @ResponseBody()
+    @PostMapping(value = "/order-success")
+    public AfterOrderingDto getPreOrder(@RequestBody List<OrderingSuccessDto> orderingSuccessDto, HttpSession session, Principal principal) {
+        return reserveTablesService.orderingSuccess(orderingSuccessDto, session, principal);
     }
 }

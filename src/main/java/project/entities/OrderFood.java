@@ -1,6 +1,8 @@
 package project.entities;
 
 import lombok.Setter;
+import project.entities.common.OrderType;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,12 +13,14 @@ import java.util.List;
 public class OrderFood {
 
     private Long id;
+    private OrderType orderType;
     private User user;
+    private ReserveTables reserveTable;
     private String nameOfUser;
     private String address;
     private String phone;
     private String description;
-    private List<Item> listItems;
+    private List<Item> items;
 
     public OrderFood() {
     }
@@ -28,9 +32,11 @@ public class OrderFood {
         return id;
     }
 
-    @Column(name = "description")
-    public String getDescription() {
-        return description;
+
+    @Column(name = "order_type", nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    public OrderType getOrderType() {
+        return orderType;
     }
 
     @OneToOne
@@ -38,6 +44,18 @@ public class OrderFood {
     public User getUser() {
         return user;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "reserved_table_id")
+    public ReserveTables getReserveTable() {
+        return reserveTable;
+    }
+
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
 
     @Column(name = "name_of_user")
     public String getNameOfUser() {
@@ -55,7 +73,7 @@ public class OrderFood {
     }
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Item> getListItems() {
-        return listItems;
+    public List<Item> getItems() {
+        return items;
     }
 }

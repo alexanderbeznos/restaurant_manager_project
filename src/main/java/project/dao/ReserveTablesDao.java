@@ -18,6 +18,5 @@ public interface ReserveTablesDao extends JpaRepository<ReserveTables, Long> {
                                                           @Param("finishDate") LocalDateTime finishDate,
                                                           @Param("tableNumberList") List<Integer> tableNumberList);
 
-
     List<ReserveTables> findByUser(Long id);
 }
