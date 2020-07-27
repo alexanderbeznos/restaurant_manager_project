@@ -19,6 +19,7 @@ import project.entities.common.FilterMenu;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,7 +79,7 @@ public class DishService {
         return processOrderDto;
     }
 
-    public String getStars(Long id, Model model) {
+    public void getStars(Long id, Model model) {
         Dish dish = findById(id);
         model.addAttribute("dish", dish);
         float a = dish.getStarOne() + dish.getStarTwo() * 2 + dish.getStarThree() * 3 + dish.getStarFour() * 4 + dish.getStarFive() * 5;
@@ -86,7 +87,15 @@ public class DishService {
         float delete = a / b;
         String total = String.format("%.1f", delete);
         model.addAttribute("total", total);
-        return "aboutDish";
+    }
+
+    public void getDish(Long id, Model model) {
+        Dish dish = findById(id);
+        model.addAttribute("dish", dish);
+        List<Category> allCategory = categoryService.findAll();
+        model.addAttribute("allCategory", allCategory);
+        model.addAttribute("idCategory", dish.getCategory().getId());
+//        model.addAttribute("options", List.of(true, false));
     }
 
     public void getRating(Long id, Integer stars) {
@@ -107,6 +116,15 @@ public class DishService {
             dish.setStarOne(dish.getStarOne() + 1);
             saveOrUpdate(dish);
         }
+    }
+
+    public void changeDish(Dish dish, Long categoryId, Boolean spicy, Boolean forVegans, Boolean withoutSugar, Boolean withoutGluten) {
+        dish.setCategory(categoryService.findById(categoryId));
+        dish.setSpicy(spicy);
+        dish.setForVegans(forVegans);
+        dish.setWithoutSugar(withoutSugar);
+        dish.setWithoutGluten(withoutGluten);
+        saveOrUpdate(dish);
     }
 
 }

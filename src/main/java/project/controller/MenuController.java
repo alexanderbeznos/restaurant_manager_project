@@ -10,11 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.dto.ProcessOrderDto;
+import project.entities.Dish;
+import project.entities.User;
 import project.entities.common.Cart;
 import project.entities.common.FilterMenu;
 import project.service.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Map;
 
@@ -71,7 +74,8 @@ public class MenuController {
 
     @GetMapping(value = "/about-dish/{id}")
     public String getStars(@PathVariable("id") Long id, Model model) {
-        return dishService.getStars(id, model);
+        dishService.getStars(id, model);
+        return "aboutDish";
     }
 
     @ResponseBody
@@ -90,4 +94,34 @@ public class MenuController {
         orderFoodService.save(map, session, principal);
         return "successOrder";
     }
+
+    @GetMapping(value = "/dishes/{category}")
+    public String getDishesForAdmin(@PathVariable(value = "category") Long category,
+                            @PageableDefault(page = 0, size = 6)
+                            @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+                            FilterMenu filterMenu,
+                            Model model) {
+        dishService.getDishes(category, pageable, filterMenu, model);
+        return "dishesForChange";
+    }
+
+    @GetMapping(value = "/about-dish/change/{id}")
+    public String getDishChange(@PathVariable("id") Long id, Model model) {
+        dishService.getDish(id, model);
+        return "dishForChange";
+    }
+
+    @PostMapping(value = "/changing")
+    public String getChanging(@ModelAttribute Dish dish,
+                              @RequestParam(name = "categoryId") Long categoryId,
+                              @RequestParam(name = "spicy") Boolean spicy,
+                              @RequestParam(name = "forVegans") Boolean forVegans,
+                              @RequestParam(name = "withoutSugar") Boolean withoutSugar,
+                              @RequestParam(name = "withoutGluten") Boolean withoutGluten,
+                              Model model) {
+        dishService.changeDish(dish, categoryId, spicy, forVegans, withoutSugar, withoutGluten);
+        dishService.getDish(dish.getId(), model);
+        return "dishForChange";
+    }
+
 }

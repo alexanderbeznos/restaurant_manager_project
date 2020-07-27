@@ -97,19 +97,19 @@
     <div th:fragment="side">
         <div class="category-wrap">
             <ul>
-                <li><a th:href="@{/}">Меню</a></li>
-                <li><a th:href="@{/restaurant}">Ресторан</a></li>
-                <li><a th:href="@{/reservation}">Бронь</a></li>
-                <li><a th:href="@{/}" >Заказать еду</a></li>
-                <li><a th:href="@{/}" >Журналы</a></li>
-                <li><a th:href="@{/}" >Картинки</a></li>
+                <li sec:authorize="isAnonymous() || hasAnyAuthority('USER', 'ADMIN')"><a th:href="@{/}">Меню</a></li>
+                <li sec:authorize="isAnonymous() || hasAnyAuthority('USER', 'ADMIN')"><a th:href="@{/restaurant}">Ресторан</a></li>
+                <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')"><a th:href="@{/reservation}">Бронь</a></li>
+                <li sec:authorize="hasAnyAuthority('COOK', 'ADMIN')"><a th:href="@{/kitchen/all-orders}">Кухня</a></li>
+                <li sec:authorize="hasAnyAuthority('COOK', 'ADMIN')"><a th:href="@{/technology/all}">Технология приготовления</a></li>
+                <li sec:authorize="hasAuthority('ADMIN')" ><a th:href="@{/menu/dishes/1}">Блюда</a></li>
 
-                <div sec:authorize="hasAuthority('ADMIN')">
-                    <a>Админ</a>
-                </div>
-                <div sec:authorize="hasAuthority('USER')">
-                    <a>Пользователь</a>
-                </div>
+                <!--<div sec:authorize="hasAuthority('ADMIN')">-->
+                    <!--<a>Админ</a>-->
+                <!--</div>-->
+                <!--<div sec:authorize="hasAuthority('USER')">-->
+                    <!--<a>Пользователь</a>-->
+                <!--</div>-->
 
             </ul>
         </div>

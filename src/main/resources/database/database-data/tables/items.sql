@@ -8,7 +8,7 @@ dish_id integer references dishes(id),
 count integer,
 serving_time timestamp,
 comment varchar,
-done boolean default false
+take boolean default false
 );
 
 comment on table menu_category is 'Заказ блюда пользователем';
@@ -25,4 +25,4 @@ comment on column items.serving_time is 'Время подачи блюда(в �
 
 comment on column items.comment is 'Комментирий к заказу блюда';
 
-comment on column items.done is 'Заказ готов';
+comment on column items.take is 'Заказ взят кухней в работу';

@@ -95,27 +95,27 @@ public class Dish {
     }
 
     @Column(name = "star_one")
-    public int getStarOne() {
+    public Integer getStarOne() {
         return starOne;
     }
 
     @Column(name = "star_two")
-    public int getStarTwo() {
+    public Integer getStarTwo() {
         return starTwo;
     }
 
     @Column(name = "star_three")
-    public int getStarThree() {
+    public Integer getStarThree() {
         return starThree;
     }
 
     @Column(name = "star_four")
-    public int getStarFour() {
+    public Integer getStarFour() {
         return starFour;
     }
 
     @Column(name = "star_five")
-    public int getStarFive() {
+    public Integer getStarFive() {
         return starFive;
     }
 }

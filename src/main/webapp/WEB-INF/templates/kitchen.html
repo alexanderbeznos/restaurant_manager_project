@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/kitchen.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/kitchen.js}"></script>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="refresh" content="15;URL=http://localhost:8080/restaurant_manager_project/kitchen/all-orders">
+
+    <title>О блюде</title>
+
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function(){
+            $("body").keyup(function( event ){
+                if (event.which == '49' || event.which == '97') {
+                    takeItem(1);
+                } else if (event.which == '50' || event.which == '98') {
+                    takeItem(2);
+                } else if (event.which == '51' || event.which == '99') {
+                    takeItem(3);
+                } else if (event.which == '52' || event.which == '100') {
+                    takeItem(4);
+                } else if (event.which == '53' || event.which == '101') {
+                    takeItem(5);
+                } else if (event.which == '54' || event.which == '102') {
+                    takeItem(6);
+                } else if (event.which == '55' || event.which == '103') {
+                    takeItem(7);
+                } else if (event.which == '56' || event.which == '104') {
+                    takeItem(8);
+                } else if (event.which == '57' || event.which == '105') {
+                    takeItem(9);
+                }
+            });
+        });
+    </script>
+
+    <style th:inline="text">
+        .house {
+            width: 40px;
+            height: 40px;
+            background:url([[@{/static/images/house.png}]]) center center no-repeat;
+            background-size: 100% 100%;
+            padding: 0 0;
+            display:block;
+        }
+    </style>
+
+</head>
+<body>
+    <div th:replace="fragments/fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments/fragments.html :: side"></div>
+
+    <div class="center">
+        <div class="row top-text">
+            <h4 class="top-text">Кухня</h4>
+            <table class="table table-hover text-light table-text" >
+                <tr>
+                    <th>Номер</th>
+                    <th>Название блюда</th>
+                    <th>Количество</th>
+                    <th>Время подачи</th>
+                    <th>Осталось</th>
+                    <th>Ресторан/Доставка</th>
+
+                </tr>
+                <tr th:each="product : ${items}">
+                    <td th:text="${product.number}"></td>
+                    <td th:text="${product.dish.name}"></td>
+                    <td th:text="${product.count}"></td>
+                    <td th:text="${product.servingTime}"></td>
+                    <td th:text="${product.difference}"></td>
+                    <td class="house" th:class="${product.delivery == true} ? 'house' : ''"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10">
+                <div>
+                    <ul class="pagination pagination-sm m-2 ">
+                        <li class="page-item" th:each="number: ${#numbers.sequence(0, totalPages != 0 ? totalPages-1 : 0)}">
+                            <a class="page-link" th:text="${number} + 1" th:onclick="|getPageItems('page', '${number}')|"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

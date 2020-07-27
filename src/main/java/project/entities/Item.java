@@ -19,7 +19,7 @@ public class Item {
     private OrderFood order;
     private LocalDateTime servingTime;
     private String comment;
-    private Boolean done;
+    private Boolean take;
 
 
     public Item() {
@@ -64,8 +64,8 @@ public class Item {
         return comment;
     }
 
-    @Column(name = "done")
-    public Boolean getDone() {
-        return done;
+    @Column(name = "take")
+    public Boolean getTake() {
+        return take;
     }
 }

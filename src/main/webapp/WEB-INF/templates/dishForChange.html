@@ -1,0 +1,149 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/dishForChange.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>О блюде</title>
+
+
+
+
+</head>
+<body>
+<div th:replace="fragments/fragments.html :: topMenu"></div>
+
+<div th:replace="fragments/fragments.html :: side"></div>
+
+<div class="center">
+    <div class="row">
+        <div id="showAdd">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-4">
+            <div class="card-bod">
+                <img style="height: 400px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
+            </div>
+            <div >
+                <a th:href="@{/menu/category/1}" class="card-name">
+                    <span>К меню</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-7">
+            <form action="#" th:action="@{/menu/changing}" th:object="${dish}" method="post">
+                <div class="row">
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <span>Название:</span>
+                            <!--<span th:text="|${dish.price}руб.|" >Цена</span>-->
+                            <input type="text" th:field="*{name}">
+                        </div>
+                        <div class="row">
+                            <span>Категория:</span>
+                            <select class="form-control" name="categoryId">
+                                <option th:each="category: ${allCategory}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id==idCategory}"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <span>Описание:</span>
+                            <!--<span th:text="|Описание: ${dish.description}|" >Описание</span>-->
+                            <input type="text" th:field="*{description}">
+                        </div>
+                        <div class="row">
+                            <span>Ингредиенты:</span>
+                            <!--<span th:text="|Ингредиенты: ${dish.ingredients}|" >Ингредиенты</span>-->
+                            <input type="text" th:field="*{ingredients}">
+                        </div>
+                        <div class="row">
+                            <span>Цена:</span>
+                            <!--<span th:text="|${dish.price}руб.|" >Цена</span>-->
+                            <input type="text" th:field="*{price}">
+                        </div>
+                        <div class="row">
+                            <span>Калорийность:</span>
+                            <!--<span th:text="|Калорийность: ${dish.calories}ккал|" >Калорийность</span>-->
+                            <input type="text" th:field="*{calories}">
+                        </div>
+                        <div class="row">
+                            <span>Фото:</span>
+                            <!--<span th:text="|Калорийность: ${dish.calories}ккал|" >Калорийность</span>-->
+                            <input type="text" th:field="*{photo}">
+                        </div>
+                        <div class="row">
+                            <span>Острое:</span>
+                            <select class="form-control" name="spicy">
+                                <option th:value="true" th:text="Да" th:selected="*{spicy==true}"></option>
+                                <option th:value="false" th:text="Нет" th:selected="*{spicy==false}"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <span>Для веганов:</span>
+                            <select class="form-control" name="forVegans">
+                                <option th:value="true" th:text="Да" th:selected="*{forVegans==true}"></option>
+                                <option th:value="false" th:text="Нет" th:selected="*{forVegans==false}"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <span>Без сахара:</span>
+                            <select class="form-control" name="withoutSugar">
+                                <option th:value="true" th:text="Да" th:selected="*{withoutSugar==true}"></option>
+                                <option th:value="false" th:text="Нет" th:selected="*{withoutSugar==false}"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <span>Без глютена:</span>
+                            <select class="form-control" name="withoutGluten">
+                                <option th:value="true" th:text="Да" th:selected="*{withoutGluten==true}"></option>
+                                <option th:value="false" th:text="Нет" th:selected="*{withoutGluten==false}"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <span>1 Звезда:</span>
+                            <input type="text" th:field="*{starOne}">
+                        </div>
+                        <div class="row">
+                            <span>2 Звезды:</span>
+                            <input type="text" th:field="*{starTwo}">
+                        </div>
+                        <div class="row">
+                            <span>3 Звезды:</span>
+                            <input type="text" th:field="*{starThree}">
+                        </div>
+                        <div class="row">
+                            <span>4 Звезды:</span>
+                            <input type="text" th:field="*{starFour}">
+                        </div>
+                        <div class="row">
+                            <span>5 Звезд:</span>
+                            <input type="text" th:field="*{starFive}">
+                        </div>
+                        <input type="hidden" th:field="*{id}" >
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-secondary width100">Сохранить</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

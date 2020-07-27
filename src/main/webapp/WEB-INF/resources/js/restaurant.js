@@ -90,9 +90,6 @@ function showTables(data) {
     element.innerHTML = arrayProducts.join('');
 }
 
-
-
-
 function showInfoAboutTable(id) {
     $.ajax({
         type: 'GET',
@@ -259,31 +256,6 @@ function afterChooseTable(data) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function orderingCheckTime(reserveTablesId) {
     let orderingObj = aboutOrdering(reserveTablesId);
 
@@ -328,6 +300,6 @@ function afterOrdering(data) {
     if (!data.success) {
         alert('Выберите время подачи блюда в забронированное время');
     } else {
-        window.location.href = "http://localhost:8080/restaurant_manager_project/menu/category/1";
+        window.location.href = './../../menu/category/1';
     }
 }

@@ -4,13 +4,12 @@
 <head>
     <th:block th:include="fragments/fragments.html :: head"></th:block>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/successOrder.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/kitchen.css}">
 
     <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
 
     <meta charset="UTF-8">
     <title>О блюде</title>
-
 
 
 </head>
@@ -21,24 +20,8 @@
 
     <div class="center">
         <div class="row top-text">
-            <h4 class="top-text">Заказ успешно оформлен!</h4>
+            <h4 class="top-text">Здесь указана технология приготовления всех блюд</h4>
         </div>
-        <div class="row">
-            <div class="col-1">
-
-            </div>
-            <div class="col-10">
-                <form th:action="@{/}" method="get">
-                    <button type="submit" class="btn btn-secondary width100">К меню</button>
-                </form>
-            </div>
-            <div class="col-1">
-
-            </div>
-        </div>
-
-
-
 
     </div>
 </body>

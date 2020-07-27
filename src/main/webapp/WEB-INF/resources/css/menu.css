@@ -60,6 +60,18 @@
     min-height: 466px;
 }
 
+.font {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mid {
+    vertical-align: top;
+}
+
 /*.table-text {*/
     /*font-weight: 400;*/
     /*letter-spacing: 1px;*/

@@ -52,7 +52,6 @@ public class ReserveTables {
         return numberOfPeople;
     }
 
-
     @Column(name = "table_number")
     public Integer getTableNumber() {
         return tableNumber;

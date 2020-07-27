@@ -1,0 +1,163 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/dishesForChange.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Меню</title>
+    <style th:inline="text">
+        .plus {
+            width: 24px;
+            height: 24px;
+            background:url([[@{/static/images/plus-white.png}]]) center center no-repeat;
+            background-size: 70% 70%;
+            padding: 0 0;
+            display:block;
+        }
+        .plus:hover {
+            background-image: url([[@{/static/images/plus-grey.png}]])
+        }
+
+        .minus {
+            width: 24px;
+            height: 24px;
+            background:url([[@{/static/images/minus-white.png}]]) center center no-repeat;
+            background-size: 70% 70%;
+            padding: 0 0;
+            display:block;
+        }
+        .minus:hover {
+            background-image: url([[@{/static/images/minus-grey.png}]])
+        }
+        a.sort:hover {
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: './../../menu/show-cart',
+                dataType: 'json',
+                success: function(data) {
+                    showCart(data)
+                }});
+        })
+    </script>
+
+</head>
+<body>
+<div th:replace="fragments/fragments.html :: topMenu"></div>
+
+<div th:replace="fragments/fragments.html :: side"></div>
+
+<div class="center">
+    <div class="row">
+        <div class="col-9">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="top-text">Меню</h1>
+                        </div>
+                    </div>
+                    <div class="row pl-2">
+                        <div class="col-8">
+                            <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="spicy" th:checked="*{filterMenu.spicy}" th:onchange="checkbox('spicy')"/>Острое</label>
+                            <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="forVegans" th:checked="*{filterMenu.forVegans}" th:onchange="checkbox('forVegans')"/>Для веганов</label>
+                            <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="withoutSugar" th:checked="*{filterMenu.withoutSugar}" th:onchange="checkbox('withoutSugar')"/>Без сахара</label>
+                            <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="withoutGluten" th:checked="*{filterMenu.withoutGluten}" th:onchange="checkbox('withoutGluten')"/>Без глютена</label>
+                        </div>
+                        <div class="col-4">
+                            <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'name: DESC' || sort == 'name: ASC'|| sort == 'id: ASC'}" th:onclick="getSort('price', 'desc')" >
+                                <span class="mr-1">По цене </span>
+                                <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
+                            </a>
+                            <a class="sort mr-4" th:if="${sort == 'price: DESC'}" th:onclick="getSort('price', 'asc')">
+                                <span class="mr-1">По цене </span>
+                                <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-green.png}">
+                            </a>
+                            <a class="sort mr-4" th:if="${sort == 'price: ASC'}" th:onclick="getSort('price', 'null')">
+                                <span class="mr-1">По цене </span>
+                                <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
+                            </a>
+
+                            <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'price: DESC' || sort == 'price: ASC' || sort == 'id: ASC'}" th:onclick="getSort('name', 'desc')" >
+                                <span class="mr-1">А-Я</span>
+                                <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
+                            </a>
+                            <a class="sort mr-4" th:if="${sort == 'name: DESC'}" th:onclick="getSort('name', 'asc')">
+                                <span class="mr-1">А-Я</span>
+                                <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-green.png}">
+                            </a>
+                            <a class="sort mr-4" th:if="${sort == 'name: ASC'}" th:onclick="getSort('name', 'null')">
+                                <span class="mr-1">А-Я</span>
+                                <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <div th:each="category : ${categories}">
+                        <form action="" th:action="@{/menu/dishes/} + ${category.id}" method="get">
+                            <button type="submit" th:text="${category.name}" class="btn btn-primary width100 m-2"></button>
+                        </form>
+                    </div>
+
+
+
+                </div>
+                <div class="col-10 height-min">
+                    <div class="my-card p-2" th:each="dish : ${dishes}">
+                        <div class= "card bg-primary">
+                            <a th:href="@{/menu/about-dish/change/} + ${dish.id}" class="card-name">
+                                <span th:text="${dish.name}" >Название блюда</span>
+                            </a>
+                            <div class="card-bod">
+                                <img style="height: 134px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
+                            </div>
+                            <div class="card-bot">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <span th:text="${dish.price} + ' руб.' ">Цена блюда</span>
+                                    </div>
+                                    <div class="col-2 p-1">
+                                        <a th:onclick="|put(${dish.id})|" class="plus"></a>
+                                    </div>
+                                    <div class="col-2 p-1">
+                                        <a th:onclick="|remove(${dish.id})|" class="minus"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-10">
+                    <div>
+                        <ul class="pagination pagination-sm m-2 ">
+                            <li class="page-item" th:each="number: ${#numbers.sequence(0, totalPages != 0 ? totalPages-1 : 0)}">
+                                <a class="page-link" th:text="${number} + 1" th:onclick="|getDishes('page', '${number}')|"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

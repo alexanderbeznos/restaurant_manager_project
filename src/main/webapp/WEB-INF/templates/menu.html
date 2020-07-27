@@ -70,10 +70,10 @@
                         </div>
                         <div class="row pl-2">
                             <div class="col-8">
-                                <label><input class="mr-1" type="checkbox" id="spicy" th:checked="*{filterMenu.spicy}" th:onchange="checkbox('spicy')"/>Острое</label>
-                                <label><input class="mr-1" type="checkbox" id="forVegans" th:checked="*{filterMenu.forVegans}" th:onchange="checkbox('forVegans')"/>Для веганов</label>
-                                <label><input class="mr-1" type="checkbox" id="withoutSugar" th:checked="*{filterMenu.withoutSugar}" th:onchange="checkbox('withoutSugar')"/>Без сахара</label>
-                                <label><input class="mr-1" type="checkbox" id="withoutGluten" th:checked="*{filterMenu.withoutGluten}" th:onchange="checkbox('withoutGluten')"/>Без глютена</label>
+                                <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="spicy" th:checked="*{filterMenu.spicy}" th:onchange="checkbox('spicy')"/>Острое</label>
+                                <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="forVegans" th:checked="*{filterMenu.forVegans}" th:onchange="checkbox('forVegans')"/>Для веганов</label>
+                                <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="withoutSugar" th:checked="*{filterMenu.withoutSugar}" th:onchange="checkbox('withoutSugar')"/>Без сахара</label>
+                                <label class="font mr-2"><input class="mr-1 mid" type="checkbox" id="withoutGluten" th:checked="*{filterMenu.withoutGluten}" th:onchange="checkbox('withoutGluten')"/>Без глютена</label>
                             </div>
                             <div class="col-4">
                                 <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'name: DESC' || sort == 'name: ASC'|| sort == 'id: ASC'}" th:onclick="getSort('price', 'desc')" >
@@ -137,7 +137,6 @@
                                                 <a th:onclick="|remove(${dish.id})|" class="minus"></a>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
