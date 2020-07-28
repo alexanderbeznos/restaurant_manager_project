@@ -38,23 +38,23 @@ public class WebConfig implements WebMvcConfigurer {
 //        registry.addViewController("/").setViewName("menu");
     }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
-
-    //thymeleaf
-
-    @Bean
-    @Description("Thymeleaf View Resolver")
-    public ThymeleafViewResolver viewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setOrder(1);
-        viewResolver.setCharacterEncoding("UTF-8");
-        return viewResolver;
-    }
+//    @Override
+//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
+//
+//
+//    //thymeleaf
+//
+//    @Bean
+//    @Description("Thymeleaf View Resolver")
+//    public ThymeleafViewResolver viewResolver() {
+//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//        viewResolver.setTemplateEngine(templateEngine());
+//        viewResolver.setOrder(1);
+//        viewResolver.setCharacterEncoding("UTF-8");
+//        return viewResolver;
+//    }
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {

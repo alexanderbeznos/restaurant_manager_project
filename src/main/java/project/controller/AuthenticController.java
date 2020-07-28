@@ -83,7 +83,7 @@ public class AuthenticController {
             Cart cart = new Cart();
             session.setAttribute("cart", cart);
         }
-        return "redirect: menu/category/1";
+        return "redirect:menu/category/1";
     }
 
 
