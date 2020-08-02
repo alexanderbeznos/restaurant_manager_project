@@ -107,6 +107,7 @@ public class ItemService {
         for (int i = 1; i <= listItems.size(); i++) {
             String servingTime = "";
             String difference = "";
+            String comment ="";
             if ("RESTAURANT".equals(listItems.get(i - 1).getOrder().getOrderType().getOrder())) {
                 delivery = false;
             }
@@ -119,13 +120,9 @@ public class ItemService {
                 long hours = now.until(time, ChronoUnit.HOURS);
                 long minutes = now.until(time, ChronoUnit.MINUTES);
                 difference = String.format("%d ч : %d мин", hours, minutes - hours * 60);
-
-                System.out.println();
-//                long dif = Timestamp.valueOf(listItems.get(i - 1).getServingTime()).getTime() - nowTime;
-//                LocalDateTime triggerTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(dif), TimeZone.getDefault().toZoneId());
-//                difference = reserveTablesService.changeLocalDateTimeToString(triggerTime);
             }
-            items.add(new ItemsForKitchenDto(i, listItems.get(i - 1).getDish(), listItems.get(i - 1).getCount(), servingTime, difference, delivery));
+            comment = listItems.get(i - 1).getComment();
+            items.add(new ItemsForKitchenDto(i, listItems.get(i - 1).getDish(), listItems.get(i - 1).getCount(), servingTime, difference, comment, delivery));
         }
         model.addAttribute("items", items);
         model.addAttribute("totalPages", totalPages);

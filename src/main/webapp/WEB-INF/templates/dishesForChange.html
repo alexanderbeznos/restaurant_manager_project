@@ -12,29 +12,6 @@
     <meta charset="UTF-8">
     <title>Меню</title>
     <style th:inline="text">
-        .plus {
-            width: 24px;
-            height: 24px;
-            background:url([[@{/static/images/plus-white.png}]]) center center no-repeat;
-            background-size: 70% 70%;
-            padding: 0 0;
-            display:block;
-        }
-        .plus:hover {
-            background-image: url([[@{/static/images/plus-grey.png}]])
-        }
-
-        .minus {
-            width: 24px;
-            height: 24px;
-            background:url([[@{/static/images/minus-white.png}]]) center center no-repeat;
-            background-size: 70% 70%;
-            padding: 0 0;
-            display:block;
-        }
-        .minus:hover {
-            background-image: url([[@{/static/images/minus-grey.png}]])
-        }
         a.sort:hover {
             cursor: pointer;
         }
@@ -65,7 +42,7 @@
                 <div class="col-10">
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="top-text">Меню</h1>
+                            <h1 class="top-text">Редактирование блюд</h1>
                         </div>
                     </div>
                     <div class="row pl-2">
@@ -77,28 +54,28 @@
                         </div>
                         <div class="col-4">
                             <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'name: DESC' || sort == 'name: ASC'|| sort == 'id: ASC'}" th:onclick="getSort('price', 'desc')" >
-                                <span class="mr-1">По цене </span>
+                                <span class="mr-1 font">По цене </span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
                             </a>
                             <a class="sort mr-4" th:if="${sort == 'price: DESC'}" th:onclick="getSort('price', 'asc')">
-                                <span class="mr-1">По цене </span>
+                                <span class="mr-1 font">По цене </span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-green.png}">
                             </a>
                             <a class="sort mr-4" th:if="${sort == 'price: ASC'}" th:onclick="getSort('price', 'null')">
-                                <span class="mr-1">По цене </span>
+                                <span class="mr-1 font">По цене </span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
                             </a>
 
                             <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'price: DESC' || sort == 'price: ASC' || sort == 'id: ASC'}" th:onclick="getSort('name', 'desc')" >
-                                <span class="mr-1">А-Я</span>
+                                <span class="mr-1 font">А-Я</span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
                             </a>
                             <a class="sort mr-4" th:if="${sort == 'name: DESC'}" th:onclick="getSort('name', 'asc')">
-                                <span class="mr-1">А-Я</span>
+                                <span class="mr-1 font">А-Я</span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-green.png}">
                             </a>
                             <a class="sort mr-4" th:if="${sort == 'name: ASC'}" th:onclick="getSort('name', 'null')">
-                                <span class="mr-1">А-Я</span>
+                                <span class="mr-1 font">А-Я</span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
                             </a>
                         </div>
@@ -129,12 +106,6 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <span th:text="${dish.price} + ' руб.' ">Цена блюда</span>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <a th:onclick="|put(${dish.id})|" class="plus"></a>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <a th:onclick="|remove(${dish.id})|" class="minus"></a>
                                     </div>
                                 </div>
                             </div>

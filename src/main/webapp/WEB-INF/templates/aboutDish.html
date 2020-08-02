@@ -21,74 +21,83 @@
     <div th:replace="fragments/fragments.html :: side"></div>
 
     <div class="center">
-        <div class="row">
-            <div id="showAdd">
+        <div class="row" >
+            <div class="col-1">
+            </div>
+            <div class="col-11">
+                <h4 class="top-text" th:text="${dish.name}">Название блюда</h4>
             </div>
         </div>
-        <div class="row" >
-            <h4 class="top-text" th:text="${dish.name}">Название блюда</h4>
-        </div>
+        <div class="spacing20"></div>
         <div class="row">
             <div class="col-1">
             </div>
-            <div class="col-4">
+            <div class="col-5">
                 <div class="card-bod">
-                    <img style="height: 400px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
-                </div>
-                <div >
-                    <a th:href="@{/menu/category/1}" class="card-name">
-                        <span>К меню</span>
-                    </a>
+                    <img style="height: 350px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
                 </div>
             </div>
-            <div class="col-7">
+            <div class="col-6">
                 <div class="row">
                     <div class="col-1">
 
                     </div>
                     <div class="col-9">
                         <div class="row">
-                            <span th:text="|${dish.price}руб.|" >Цена</span>
+                            <span th:text="|${dish.price} руб.|" class="price-text">Цена</span>
+                        </div>
+                        <div class="spacing10"></div>
+                        <div class="row">
+                            <p class="dish-text border-secondary border-bottom text-secondary">Описание</p>
+                            <p th:text="${dish.description}" class="dish-desc">Описание</p>
                         </div>
                         <div class="row">
-                            <span th:text="|Описание: ${dish.description}|" >Описание</span>
+                            <p class="dish-text border-secondary border-bottom text-secondary">Ингредиенты</p>
+                            <p th:text="${dish.ingredients}" class="dish-desc">Ингредиенты</p>
                         </div>
                         <div class="row">
-                            <span th:text="|Ингредиенты: ${dish.ingredients}|" >Ингредиенты</span>
+                            <p class="dish-text border-secondary border-bottom text-secondary">Калорийность</p>
+                            <p th:text="|${dish.calories} ккал|" class="dish-desc">Калорийность</p>
                         </div>
                         <div class="row">
-                            <span th:text="|Калорийность: ${dish.calories}ккал|" >Калорийность</span>
+                            <div class="col-6" style="padding: 0 20px 0 0;">
+                                <p class="dish-text border-secondary border-bottom text-secondary">Рейтинг</p>
+                                <p th:text="|${total} из 5.0|" class="dish-desc">Рейтинг</p>
+                            </div>
+                            <div class="col-6" style="padding: 0">
+                                <p class="dish-text border-secondary border-bottom text-secondary">Ваша оценка</p>
+                                <div style="width: 52%">
+                                    <div class="rating-area">
+                                        <input type="radio" th:onclick="|ratingDish(${dish.id}, 5)|" id="star-5" name="rating" value="5">
+                                        <label for="star-5" title="Оценка «5»"></label>
+                                        <input type="radio" th:onclick="|ratingDish(${dish.id}, 4)|" id="star-4" name="rating" value="4">
+                                        <label for="star-4" title="Оценка «4»"></label>
+                                        <input type="radio" th:onclick="|ratingDish(${dish.id}, 3)|" id="star-3" name="rating" value="3">
+                                        <label for="star-3" title="Оценка «3»"></label>
+                                        <input type="radio" th:onclick="|ratingDish(${dish.id}, 2)|" id="star-2" name="rating" value="2">
+                                        <label for="star-2" title="Оценка «2»"></label>
+                                        <input type="radio" th:onclick="|ratingDish(${dish.id}, 1)|" id="star-1" name="rating" value="1">
+                                        <label for="star-1" title="Оценка «1»"></label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <a class="cursor" th:onclick="|putForShowRow(${dish.id})|" >Добавить в корзину</a>
-
-                        <h4>Оцените наши блюда!</h4>
-                        <!--<input type="radio" name="gender" value="other"> Другой-->
-                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star5.png}" alt="Card image">-->
-                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star4.png}" alt="Card image">-->
-                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star3.png}" alt="Card image">-->
-                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star2.png}" alt="Card image">-->
-                        <!--<img style="height: 35px; width: 200px; display: block;" th:onclick="|ratingDish(${dish.id})|" th:src="@{/static/images/star1.png}" alt="Card image">-->
-
-                        <div class="rating-area">
-                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 5)|" id="star-5" name="rating" value="5">
-                            <label for="star-5" title="Оценка «5»"></label>
-                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 4)|" id="star-4" name="rating" value="4">
-                            <label for="star-4" title="Оценка «4»"></label>
-                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 3)|" id="star-3" name="rating" value="3">
-                            <label for="star-3" title="Оценка «3»"></label>
-                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 2)|" id="star-2" name="rating" value="2">
-                            <label for="star-2" title="Оценка «2»"></label>
-                            <input type="radio" th:onclick="|ratingDish(${dish.id}, 1)|" id="star-1" name="rating" value="1">
-                            <label for="star-1" title="Оценка «1»"></label>
+                        <div class="row">
+                            <div id="showAdd" class="spacing30">
+                            </div>
                         </div>
-
-                        <span th:text="${total}" >Калорийность</span>
-
-
-
+                        <div class="row">
+                            <div class="col-6" style="padding: 0 20px 0 0;">
+                                <button type="button" th:onclick="|putForShowRow(${dish.id})|" class="btn btn-success width100">Добавить в корзину</button>
+                            </div>
+                            <div class="col-6" style="padding: 0">
+                                <a th:href="@{/menu/category/1}" class="card-name">
+                                    <button type="button" class="btn btn-secondary width100">Вернуться к меню</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-2">
-
                     </div>
                 </div>
 

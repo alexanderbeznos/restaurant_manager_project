@@ -24,35 +24,33 @@
 
 <div class="center">
     <div class="children">
-        <h5 class="top-text">Ваш предзаказ</h5>
+        <h1 class="top-text">Оформление предзаказа</h1>
         <br>
         <span th:text="${head}"></span>
         <table class="table table-hover text-light table-text" >
-            <tr>
+            <tr class="text-secondary">
                 <th>Название блюда</th>
-                <th>Стоимость</th>
-                <th>Количество</th>
-                <th>Сумма</th>
-                <th>Время подачи</th>
-                <th>Комментарий</th>
+                <th style="text-align: center">Стоимость</th>
+                <th style="text-align: center">Количество</th>
+                <th style="text-align: center">Сумма</th>
+                <th style="text-align: center">Время подачи</th>
+                <th style="text-align: center">Комментарий</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.dish.name}"></td>
-                <td th:text="${product.dish.price}"></td>
-                <td th:text="${product.count}"></td>
-                <td th:text="${product.dish.price} * ${product.count}"></td>
-                <td>
-                    <!--<input required th:id="${product.id}" type='text' th:name="1" class='datepicker-here' data-timepicker="true"/>-->
-                    <input required th:id="${product.id}" type='text' th:name="1" class='datepicker-here' data-timepicker="true"/>
+                <td th:text="${product.dish.price}" style="text-align: center"></td>
+                <td th:text="${product.count}" style="text-align: center"></td>
+                <td th:text="${product.dish.price} * ${product.count}" style="text-align: center"></td>
+                <td style="text-align: center">
+                    <input required th:id="${product.id}" type='text' th:name="1" class='datepicker-here form-control inp' data-timepicker="true"/>
                 </td>
-                <td>
-                    <input type="text" id="comment" name="login">
+                <td style="text-align: center">
+                    <input type="text" id="comment" class="form-control inp black-text" placeholder="Комментарий к блюду">
                 </td>
                 <td th:text="${product.dish.id}" style="display:none;"></td>
             </tr>
         </table>
-        <!--<input type="hidden" id="rew" th:field="${startTime}" >-->
-        <button th:onclick="|orderingCheckTime(${reserveTablesId})|" type="button" class="btn btn-secondary width100">Подтверждаю</button>
+        <button th:onclick="|orderingCheckTime(${reserveTablesId})|" type="button" class="btn btn-success">Оформить предзаказ</button>
     </div>
 </div>
 </body>

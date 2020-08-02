@@ -21,7 +21,10 @@
 
     <div class="center">
         <div class="row top-text">
-            <h4 class="top-text">Заказ успешно оформлен!</h4>
+            <div class="col-1"></div>
+            <div class="col-10" >
+                <h1 class="top-text" style="text-align: left">Заказ успешно оформлен!</h1>
+            </div>
         </div>
         <div class="row">
             <div class="col-1">
@@ -29,7 +32,7 @@
             </div>
             <div class="col-10">
                 <form th:action="@{/}" method="get">
-                    <button type="submit" class="btn btn-secondary width100">К меню</button>
+                    <button type="submit" class="btn btn-success">Вернуться к меню</button>
                 </form>
             </div>
             <div class="col-1">

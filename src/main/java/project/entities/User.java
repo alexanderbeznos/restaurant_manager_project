@@ -37,8 +37,7 @@ public class User {
         return login;
     }
 
-    //изменить на 7
-    @Size(min = 1, message = "Минимум 7 символов")
+    @Size(min = 7, message = "Минимум 7 символов")
     @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;

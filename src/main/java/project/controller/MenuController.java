@@ -41,12 +41,12 @@ public class MenuController {
         return "menu";
     }
 
-    @GetMapping(value = "/cart")
-    public String getCart(ModelMap modelMap) {
-        Cart cart = new Cart();
-        modelMap.put("cart", cart.findAll());
-        return "product/index";
-    }
+//    @GetMapping(value = "/cart")
+//    public String getCart(ModelMap modelMap) {
+//        Cart cart = new Cart();
+//        modelMap.put("cart", cart.findAll());
+//        return "product/index";
+//    }
 
     @ResponseBody
     @GetMapping(value = "/put/{id}")

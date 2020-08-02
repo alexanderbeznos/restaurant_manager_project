@@ -17,5 +17,6 @@ public class ItemsForKitchenDto {
     private int count;
     private String servingTime;
     private String difference;
+    private String comment;
     private boolean delivery;
 }

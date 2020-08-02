@@ -107,13 +107,13 @@ function showCart(data) {
         htmlSnippet =`
                 <div id="cart" >
                     <div class="row">
-                        <span class="pl-2">${param['dish']['name']}</span>
+                        <span class="pl-4 basket-text">${param['dish']['name']}</span>
                     </div>
                     <div class="row">
                         <div class="col-4">
                         </div>
                         <div class="col-8">
-                            <span>${param['count']} x ${param['dish']['price']} = ${sum} руб. </span>
+                            <span class="basket-text">${param['count']} x ${param['dish']['price']} = ${sum} руб. </span>
                         </div>
                     </div>
                 </div>
@@ -123,8 +123,8 @@ function showCart(data) {
     if (commonSum !== 0) {
         htmlSum =`
         <div class="row">
-            <div class="pl-2 p-4">
-                <span>Общая сумма...............${commonSum} руб. </span>
+            <div class="p-4">
+                <span class="basket-text">Общая сумма..........${commonSum} руб. </span>
             </div>
         </div>
         <form action="./../../menu/process-order" method="get">
@@ -134,7 +134,7 @@ function showCart(data) {
     } else {
         htmlSum =`
         <div class="row">
-            <span>Товаров не выбрано.</span>
+            <span class="pl-4 basket-text">Товаров не выбрано.</span>
         </div>
 
     `;
@@ -169,10 +169,7 @@ function showRow() {
     }
     let htmlSnippet;
     htmlSnippet =`
-            <div  class="alert alert-dismissible alert-light">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong>Блюдо добавлено!</strong>
-            </div>
+                <strong class="dish-added">Блюдо добавлено!</strong>
         `;
     element.innerHTML = htmlSnippet;
 }
@@ -201,33 +198,45 @@ function showOrder(data) {
     let htmlSum;
     let htmlAboutUser;
     let htmlFinishForm;
+    let startPage;
+    let middlePage;
+    let finishPage;
     let arrayProducts = [];
     let commonSum = 0;
+    htmlStartForm = `
+                <form action="./../menu/success-order" method="post">
+        `;
+    arrayProducts.push(htmlStartForm);
+    startPage = `
+                <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-10">
+                                <span class="basket-text head-text text-secondary">Ваш заказ</span>
+                            </div>
+                        </div>
+                        <div class="spacing5"></div>
+        `;
+    arrayProducts.push(startPage);
     for (i = 0; i < list.length; i++) {
         let param = list[i];
         let count = Number(param['count']);
         let price = Number(param['dish']['price']);
         let sum = count * price;
         commonSum = commonSum + sum;
-        htmlStartForm = `
-                <form action="./../menu/success-order" method="post">
-        `;
-        arrayProducts.push(htmlStartForm);
         htmlSnippet =`
                 <div id="cart" >
-                    <div class="row">
-
-                    </div>
-                    <div class="row">
+                     <div class="row">
                         <div class="col-3">
-                            <span class="pl-2">${param['dish']['name']}</span>
+                            <span class="basket-text">${param['dish']['name']}</span>
                         </div>
-                        <div class="col-5">
-                            <span>${param['count']} x ${param['dish']['price']} = ${sum} руб. </span>
+                        <div class="col-3">
+                            <span class="basket-text">${param['count']} x ${param['dish']['price']} = ${sum} руб. </span>
                         </div>
                         <div class="col-4">
-                            <input type="text" id="${i}" name="${i}" value="">
+                            <input type="text" id="${i}" name="${i}" value="" class="form-control inp basket-text black-text" placeholder="Комментарий к блюду">
                         </div>
+                        <div class="col-2"></div>
                     </div>
                 </div>
             `;
@@ -235,9 +244,13 @@ function showOrder(data) {
     }
     if (commonSum !== 0) {
         htmlSum =`
+        <div class="spacing30"></div>
         <div class="row">
-            <div class="pl-2 p-4">
-                <span>Общая сумма...............${commonSum} руб. </span>
+            <div class="col-6">
+                <span class="basket-text ">Общая сумма..............................${commonSum} руб. </span>
+            </div>
+            <div class="col-4">
+                <input type="text" id="comment" name="comment" value="" class="form-control inp basket-text black-text" placeholder="Комментарий к заказу">
             </div>
         </div>
     `;
@@ -250,27 +263,50 @@ function showOrder(data) {
     `;
     }
     arrayProducts.push(htmlSum);
+    middlePage = `
+                </div>
+                        <div class="col-4">
+        `;
+    arrayProducts.push(middlePage);
     htmlAboutUser =`
+        <div class="spacing5"></div>
         <div class="row">
-            <span>Имя:</span>
-            <input type="text" id="name" name="name" value="${dates['name']}" >
+            <span class="basket-text head-text text-secondary">Имя</span>
+            <input type="text" id="name" name="name" value="${dates['name'] == null ? '' : dates['name']}" class="form-control inp basket-text black-text">
         </div>
+        <div class="spacing11"></div>
         <div class="row">
-            <span>Телефон:</span>
-            <input type="text" id="phone" name="phone" value="${dates['phone']}" >
+            <span class="basket-text head-text text-secondary">Телефон</span>
+            <input type="text" id="phone" name="phone" value="${dates['phone'] == null ? '' : dates['phone']}" class="form-control inp basket-text black-text">
         </div>
+        <div class="spacing11"></div>
         <div class="row">
-            <span>Адрес:</span>
-            <input type="text" id="address" name="address" value="${dates['address']}" >
+            <span class="basket-tex head-text text-secondary">Адрес</span>
+            <input type="text" id="address" name="address" value="${dates['address'] == null ? '' : dates['address']}" class="form-control inp basket-text black-text">
         </div>
-        <div class="row">
-            <span>Комментарий:</span>
-            <input type="text" id="comment" name="comment" value="">
-        </div>
+        <div class="spacing50"></div>
     `;
     arrayProducts.push(htmlAboutUser);
+    finishPage = `
+                </div>
+                    </div>
+        `;
+    arrayProducts.push(finishPage);
     htmlFinishForm = `
-            <button type="submit" class="btn btn-secondary width100">Оформить</button>
+            <div class="spacing50"></div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="col-10 pad-0">
+                        <button type="submit" class="btn btn-secondary btn-success width100">Оформить</button>
+                    </div>
+                </div>
+                <div class="col-4 pad-0">
+                    <a href="./../menu/category/1" class="card-name width100">
+                        <button type="button" class="btn btn-secondary width100">Вернуться к меню</button>
+                    </a>
+                </div>
+                
+            </div>
         </form>
         `;
     arrayProducts.push(htmlFinishForm);

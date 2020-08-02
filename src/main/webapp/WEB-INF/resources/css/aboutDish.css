@@ -1,25 +1,49 @@
 .top-text {
-    text-align: center;
     font-size: 1.8rem;
     letter-spacing: 2px;
     font-weight: 400;
 }
 
+.price-text {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.dish-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.dish-desc {
+    font-size: 0.98rem;
+    font-weight: 300;
+}
+
 .rating-area {
     overflow: hidden;
-    width: 265px;
     margin: 0 auto;
 }
+
+.dish-added {
+    text-align: center;
+}
+
 .rating-area:not(:checked) > input {
     display: none;
 }
 .rating-area:not(:checked) > label {
     float: right;
-    width: 42px;
+    width: 25px;
     padding: 0;
     cursor: pointer;
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 30px;
+    line-height: 30px;
     color: lightgrey;
     text-shadow: 1px 1px #bbb;
 }

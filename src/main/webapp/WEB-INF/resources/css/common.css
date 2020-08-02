@@ -12,12 +12,24 @@ body {
     width:40%
 }
 
+.spacing5 {
+    height: 5px;
+}
+
+.spacing11 {
+    height: 11px;
+}
+
 .spacing10 {
     height: 10px;
 }
 
 .spacing15 {
     height: 15px;
+}
+
+.spacing20 {
+    height: 20px;
 }
 
 .spacing30 {
@@ -30,7 +42,7 @@ body {
 
 .center {
     padding: 30px;
-    border: 5px solid #991022;
+    /*border: 5px solid #991022;*/
     margin-left: 203px;
 }
 

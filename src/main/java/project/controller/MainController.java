@@ -2,6 +2,11 @@ package project.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +14,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import project.entities.Roles;
 import project.entities.User;
 import project.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -55,9 +63,20 @@ public class MainController {
             });
             return "userSettingsChange";
         }
-        userService.saveOrUpdate(user);
-        return "userSettings";
+        User changeUser = userService.findById(user.getId());
+        changeUser.setLastName(user.getLastName());
+        changeUser.setFirstName(user.getFirstName());
+        changeUser.setMiddleName(user.getMiddleName());
+        changeUser.getUserSettings().setAddress(user.getUserSettings().getAddress());
+        changeUser.getUserSettings().setPhone(user.getUserSettings().getPhone());
+        changeUser.setLogin(user.getLogin());
+        userService.saveOrUpdate(changeUser);
 
+        Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(changeUser.getLogin(), changeUser.getPassword(), authorities);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        return "userSettings";
     }
 
     @GetMapping(value = "/password-change")
@@ -96,7 +115,7 @@ public class MainController {
             User thisUser = userService.findByLogin(principal.getName());
             thisUser.setPassword(newPassword1);
             userService.saveAndFlush(thisUser);
-            return "redirect: user-settings";
+            return "redirect:user-settings";
         }
         return "userPasswordChange";
     }

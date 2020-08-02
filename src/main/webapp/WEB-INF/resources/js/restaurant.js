@@ -112,12 +112,16 @@ function changeNumberTable(data) {
     let arrayProducts = [];
     let htmlStart;
     htmlStart = `
-                    <div class="col-6">
-                        <span>Столик</span>
+                    <div class="col-8 table-desc text-secondary height-30">
+                        <span>
+                            Столик
+                        </span>
                     </div>
-                    <div class="col-6">
-                        <span id="numberTable">${obj['numberOfTable']}</span>
+                    <div class="col-4">
+                        <!--<span id="numberTable">${obj['numberOfTable']}</span>-->
+                        <input id="numberTable" type="text" class="form-control inp" value="${obj['numberOfTable']}" disabled>
                     </div>
+
         `;
     arrayProducts.push(htmlStart);
     element.innerHTML = arrayProducts.join('');
@@ -134,11 +138,11 @@ function countOfGuest(data) {
     let htmlMiddle;
     let htmlFinish;
     htmlStart = `
-                <div class="col-6">
-                    <span>Кол-во гостей:</span>
+                <div class="col-8 height-30">
+                    <span class="table-desc text-secondary">Кол-во гостей:</span>
                 </div>
-                <div class="col-6">
-                    <select id="amountPeople">                           
+                <div class="col-4">
+                    <select id="amountPeople" class="form-control inp">                           
         `;
     arrayProducts.push(htmlStart);
     for (let i = 1; i <= seat; i++) {
@@ -163,7 +167,7 @@ function changeComment() {
     let arrayProducts = [];
     let htmlStart;
     htmlStart = `
-            <input type="text" id="commentReserve">
+            <input type="text" id="commentReserve" class="form-control width100 inp black-text" placeholder="Добавьте комментарий">
         `;
     arrayProducts.push(htmlStart);
     element.innerHTML = arrayProducts.join('');
@@ -211,7 +215,7 @@ function aboutTables() {
         return null;
     }
     let seats = document.getElementById("amountPeople").value;
-    let numberTable = document.getElementById("numberTable").innerText;
+    let numberTable = document.getElementById("numberTable").value;
     let comment = document.getElementById("commentReserve").value;
     return {
         startDate: startDateTable,
@@ -246,7 +250,7 @@ function afterChooseTable(data) {
         let htmlTable;
         let arrayProducts = [];
         htmlTable = `
-                    <span>Столик недоступен в данное время</span>                                     
+                    <span class="text-danger text-desc p-3">Столик занят в данное время</span>                                     
         `;
         arrayProducts.push(htmlTable);
         element.innerHTML = arrayProducts.join('');

@@ -55,12 +55,12 @@ public class AuthenticController {
         }
         UserSettings userSettings = new UserSettings();
         user.setUserSettings(userSettings);
-        Roles role = rolesDao.findByName("user");
+        Roles role = rolesDao.findByName("USER");
         Set<Roles> setRoles = new HashSet<>();
         setRoles.add(role);
         user.setRoles(setRoles);
         userService.saveAndFlush(user);
-        return "redirect: login";
+        return "redirect:login";
     }
 
     @GetMapping(value = "login")
@@ -70,11 +70,6 @@ public class AuthenticController {
         }
         return "login";
     }
-
-//    @GetMapping(value = "")
-//    public String getMenu() {
-//        return "redirect: menu/category/1";
-//    }
 
     @GetMapping(value = "")
     public String getMenu(HttpSession session) {

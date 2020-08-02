@@ -32,83 +32,123 @@
     <div th:replace="fragments/fragments.html :: side"></div>
 
     <div class="center">
-        <div class="row top-text">
-
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-9">-->
+                <!--<h1 class="top-text">Бронирование столика</h1>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="row">
             <div class="col-9">
+                <h1 class="top-text">Бронирование столика</h1>
                 <div id="showTables">
                     <div class="area plan">
                         <div id="table1" onclick="showInfoAboutTable(id)">
-
                         </div>
                         <div id="table2" onclick="showInfoAboutTable(id)">
-
+                        </div>
+                        <div id="table3" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table4" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table5" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table6" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table7" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table8" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table9" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table10" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table11" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table12" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table13" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table14" onclick="showInfoAboutTable(id)">
                         </div>
                         <div id="table15" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table16" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table17" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table18" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table19" onclick="showInfoAboutTable(id)">
+                        </div>
+                        <div id="table20" onclick="showInfoAboutTable(id)">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-3">
-                <div class="row">
-                    <form id="dateForm" >
-                        <input required id="startDate" type='text' th:name="startDate" class='datepicker-here' data-timepicker="true"/>
-                        <input required id="finishDate" type='text' th:name="finishDate" class='datepicker-here' data-timepicker="true"/>
-                        <div class="seats">
-                            <label>Количество мест: </label>
-                            <select id="seats">
-                                <option value="2">2</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="10">10</option>
-                                <option value="12">12</option>
-                            </select>
+                <div class="window">
+                    <div class="row">
+                        <div class="col text-desc">
+                            <span>1. Выберите время</span>
+                            <div class="spacing5"></div>
+                            <form id="dateForm">
+                                <input required id="startDate" type='text' th:name="startDate" class='datepicker-here form-control inp' data-timepicker="true" placeholder="Время от"/>
+                                <input required id="finishDate" type='text' th:name="finishDate" class='datepicker-here form-control inp' data-timepicker="true" placeholder="Время до"/>
+                                <div class="spacing15"></div>
+                                <span>2. Выберите тип стола</span>
+                                <div class="spacing5"></div>
+                                <div>
+                                    <select id="seats" class="form-control inp">
+                                        <option value="2">2-местный и более</option>
+                                        <option value="4">4-местный и более</option>
+                                        <option value="5">5-местный и более</option>
+                                        <option value="6">6-местный и более</option>
+                                        <option value="10">10-местный и более</option>
+                                        <option value="12">12-местный и более</option>
+                                    </select>
+                                </div>
+                                <div class="spacing15"></div>
+                                <span>3. Нажмите для показа свободных столиков</span>
+                                <div class="spacing5"></div>
+                                <button th:onclick="requestShowTables()" type="button" class="btn btn-outline-secondary width100 but-size">Показать свободные столики</button>
+                            </form>
                         </div>
-                        <br>
-                        <button th:onclick="requestShowTables()" type="button" class="btn btn-secondary width100">Показать</button>
-                    </form>
+                    </div>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <span class="text-desc">4. Выберите стол на плане ресторана</span>
+                            <div class="spacing5"></div>
+                            <div class="row" id="numberOfTable">
+                                <div class="col-8 table-desc text-secondary height-30">
+                                    <span>Столик</span>
+                                </div>
+                                <div class="col-4"></div>
+                            </div>
+                            <div class="row" style="height: 22px" id="countOfGuest">
+                                <div class="col-8 height-30">
+                                    <span class="table-desc text-secondary">Кол-во гостей:</span>
+                                </div>
+                                <div class="col-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spacing15"></div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="text-desc">5. Комментарий к бронированию</span>
+                            <div class="spacing5"></div>
+                            <div id="changeComment" style="height: 37px"></div>
+                            <div class="row" id="notFindTime" style="height: 44px"></div>
+                                <button th:onclick="chooseTable()" type="button" class="btn btn-success width100">Зарезервировать</button>
+                        </div>
+
+                    </div>
+
+
+
+                </form>
                 </div>
-                <div class="row">
-                    <form >
-                        <div class="row">
-                            <span>Выбор столика</span>
-                        </div>
-                        <div class="row" id="numberOfTable">
-                            <div class="col-6">
-                                <span>Столик</span>
-                            </div>
-                            <div class="col-6">
-
-                            </div>
-                        </div>
-                        <div class="row" style="height: 22px" id="countOfGuest">
-                            <div class="col-6">
-                                <span>Кол-во гостей:</span>
-                            </div>
-                            <div class="col-6">
-
-                            </div>
-                        </div>
-                        <div class="row" style="height: 22px">
-                            <div class="col-6">
-                                <span>Комментарий:</span>
-                            </div>
-                            <div class="col-6" id="changeComment">
-
-                            </div>
-                        </div>
-                        <div class="row" id="notFindTime" style="height: 44px" >
-
-                        </div>
-                        <div class="row">
-                            <button th:onclick="chooseTable()" type="button" class="btn btn-secondary width100">Зарезервировать</button>
-                        </div>
-
-                    </form>
-                </div>
-
 
             </div>
         </div>

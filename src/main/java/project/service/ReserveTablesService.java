@@ -47,7 +47,7 @@ public class ReserveTablesService {
         String startTime = changeLocalDateTimeToString(reserveTables.getStartTime());
         String finishTime = changeLocalDateTimeToString(reserveTables.getFinishTime());
         User user = userService.findById(reserveTables.getUser());
-        String row = String.format("Уважаемый (ая) %s, ждём вас с %s до %s в количестве %d человек", user.getFirstName(), startTime, finishTime, reserveTables.getNumberOfPeople());
+        String row = String.format("Уважаемый (ая) %s, ждём вас с %s до %s в количестве %d человек.", user.getFirstName(), startTime, finishTime, reserveTables.getNumberOfPeople());
         model.addAttribute("success", row);
         model.addAttribute("reservedId", id);
         return "successReservation";
@@ -96,9 +96,6 @@ public class ReserveTablesService {
         String login = principal.getName();
         User user = userService.findByLogin(login);
         ReserveTables reserveTables = findById(id);
-//        OrderFood byReserveTableId = orderFoodDao.findByReserveTableId(reserveTables.getId());
-//        orderFoodDao.delete(byReserveTableId);
-
         reserveTablesDao.delete(reserveTables);
         List<AllReservedDto> reserves = returnAllReserved(user);
         model.addAttribute("reserves", reserves);
@@ -117,7 +114,7 @@ public class ReserveTablesService {
         ReserveTables reserveTables = findById(id);
         String startTime = changeLocalDateTimeToString(reserveTables.getStartTime());
         String finishTime = changeLocalDateTimeToString(reserveTables.getFinishTime());
-        String head = String.format("с %s до %s(столик №%d)", startTime, finishTime, reserveTables.getTableNumber());
+        String head = String.format("Предзаказ к бронированию с %s до %s(столик №%d)", startTime, finishTime, reserveTables.getTableNumber());
         List<OrderingDto> productsDto = new ArrayList<>();
         for (int i = 1; i <= products.size(); i++) {
             productsDto.add(new OrderingDto(i, products.get(i - 1).getDish(), (products.get(i - 1).getCount())));

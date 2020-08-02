@@ -8,3 +8,31 @@
 .width100 {
     width:100%
 }
+
+.inp {
+    height: 30px;
+    padding: 0.2rem 0.75rem;
+}
+
+.basket-text {
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 0.87rem;
+}
+.head-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.pad-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.black-text {
+    color: black;
+}

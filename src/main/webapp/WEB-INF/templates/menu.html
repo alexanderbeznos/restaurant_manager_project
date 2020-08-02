@@ -77,28 +77,28 @@
                             </div>
                             <div class="col-4">
                                 <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'name: DESC' || sort == 'name: ASC'|| sort == 'id: ASC'}" th:onclick="getSort('price', 'desc')" >
-                                <span class="mr-1">По цене </span>
+                                <span class="mr-1 font">По цене </span>
                                 <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
                             </a>
                                 <a class="sort mr-4" th:if="${sort == 'price: DESC'}" th:onclick="getSort('price', 'asc')">
-                                    <span class="mr-1">По цене </span>
+                                    <span class="mr-1 font">По цене </span>
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-green.png}">
                                 </a>
                                 <a class="sort mr-4" th:if="${sort == 'price: ASC'}" th:onclick="getSort('price', 'null')">
-                                    <span class="mr-1">По цене </span>
+                                    <span class="mr-1 font">По цене </span>
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
                                 </a>
 
                                 <a class="sort mr-4" th:if="${sort == 'UNSORTED' || sort == 'price: DESC' || sort == 'price: ASC' || sort == 'id: ASC'}" th:onclick="getSort('name', 'desc')" >
-                                    <span class="mr-1">А-Я</span>
+                                    <span class="mr-1 font">А-Я</span>
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-white.png}">
                                 </a>
                                 <a class="sort mr-4" th:if="${sort == 'name: DESC'}" th:onclick="getSort('name', 'asc')">
-                                    <span class="mr-1">А-Я</span>
+                                    <span class="mr-1 font">А-Я</span>
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-white-green.png}">
                                 </a>
                                 <a class="sort mr-4" th:if="${sort == 'name: ASC'}" th:onclick="getSort('name', 'null')">
-                                    <span class="mr-1">А-Я</span>
+                                    <span class="mr-1 font">А-Я</span>
                                     <img style="height: 15px; width: 15px;" th:src="@{/static/images/arrow-green-white.png}">
                                 </a>
                             </div>
@@ -109,7 +109,7 @@
                     <div class="col-2">
                         <div th:each="category : ${categories}">
                             <form action="" th:action="@{/menu/category/} + ${category.id}" method="get">
-                                <button type="submit" th:text="${category.name}" class="btn btn-primary width100 m-2"></button>
+                                <button type="submit" th:text="${category.name}" class="btn btn-primary width100 m-2 ls"></button>
                             </form>
                         </div>
 
@@ -157,15 +157,11 @@
             </div>
             <div class="col-3">
                 <div class="basket">
-                    <h1 class="top-text">Корзина</h1>
+                    <h1 class="top-text map-name">Корзина</h1>
                     <div id="cart" >
                     </div>
                 </div>
-                <div class="row">
-                    <a th:if="${reserved}" th:href="@{/restaurant/}" class="navbar-brand">Добавить заказ к броне</a>
-                </div>
             </div>
-
         </div>
 
 

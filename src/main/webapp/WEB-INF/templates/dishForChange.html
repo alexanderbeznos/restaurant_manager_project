@@ -28,115 +28,177 @@
     <div class="row">
         <div class="col-1">
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <div class="card-bod">
-                <img style="height: 400px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
+                <img style="height: 350px; width: 100%; display: block;" th:src="@{/static/images/menu/} + ${dish.photo}" alt="Card image">
             </div>
             <div >
-                <a th:href="@{/menu/category/1}" class="card-name">
-                    <span>К меню</span>
-                </a>
             </div>
         </div>
-        <div class="col-7">
+        <div class="col-6">
             <form action="#" th:action="@{/menu/changing}" th:object="${dish}" method="post">
                 <div class="row">
                     <div class="col-1">
 
                     </div>
-                    <div class="col-9">
+                    <div class="col-10">
                         <div class="row">
-                            <span>Название:</span>
-                            <!--<span th:text="|${dish.price}руб.|" >Цена</span>-->
-                            <input type="text" th:field="*{name}">
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Название</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" th:field="*{name}" class="form-control inp width100">
+                            </div>
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-8">
+
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Категория:</span>
-                            <select class="form-control" name="categoryId">
-                                <option th:each="category: ${allCategory}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id==idCategory}"></option>
-                            </select>
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Категория</span>
+                            </div>
+                            <div class="col-8">
+                                <select class="form-control inp" name="categoryId">
+                                    <option th:each="category: ${allCategory}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id==idCategory}"></option>
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Описание:</span>
-                            <!--<span th:text="|Описание: ${dish.description}|" >Описание</span>-->
-                            <input type="text" th:field="*{description}">
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Описание:</span>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <textarea th:field="*{description}" class="form-control inp width100" rows="3"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Ингредиенты:</span>
-                            <!--<span th:text="|Ингредиенты: ${dish.ingredients}|" >Ингредиенты</span>-->
-                            <input type="text" th:field="*{ingredients}">
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Ингредиенты</span>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <textarea th:field="*{ingredients}" class="form-control inp width100" rows="3"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Цена:</span>
-                            <!--<span th:text="|${dish.price}руб.|" >Цена</span>-->
-                            <input type="text" th:field="*{price}">
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Цена</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control inp width100" th:field="*{price}">
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Калорийность:</span>
-                            <!--<span th:text="|Калорийность: ${dish.calories}ккал|" >Калорийность</span>-->
-                            <input type="text" th:field="*{calories}">
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Калорийность</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control inp  width100" th:field="*{calories}">
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Фото:</span>
-                            <!--<span th:text="|Калорийность: ${dish.calories}ккал|" >Калорийность</span>-->
-                            <input type="text" th:field="*{photo}">
+                            <div class="col-4 pt-1">
+                                <span class="dish-text">Фото</span>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control inp width100" th:field="*{photo}">
+                            </div>
+                        </div>
+                        <div class="spacing10"></div>
+                        <div class="row">
+                            <div class="col-6 pt-1">
+                                <span class="dish-text">Острое</span>
+                                <select class="form-control inp" name="spicy">
+                                    <option th:value="true" th:text="Да" th:selected="*{spicy==true}"></option>
+                                    <option th:value="false" th:text="Нет" th:selected="*{spicy==false}"></option>
+                                </select>
+                            </div>
+                            <div class="col-6 pt-1">
+                                <span class="dish-text">Для веганов</span>
+                                <select class="form-control inp" name="forVegans">
+                                    <option th:value="true" th:text="Да" th:selected="*{forVegans==true}"></option>
+                                    <option th:value="false" th:text="Нет" th:selected="*{forVegans==false}"></option>
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
-                            <span>Острое:</span>
-                            <select class="form-control" name="spicy">
-                                <option th:value="true" th:text="Да" th:selected="*{spicy==true}"></option>
-                                <option th:value="false" th:text="Нет" th:selected="*{spicy==false}"></option>
-                            </select>
+                            <div class="col-6 pt-1">
+                                <span class="dish-text">Без сахара</span>
+                                <select class="form-control inp" name="withoutSugar">
+                                    <option th:value="true" th:text="Да" th:selected="*{withoutSugar==true}"></option>
+                                    <option th:value="false" th:text="Нет" th:selected="*{withoutSugar==false}"></option>
+                                </select>
+                            </div>
+                            <div class="col-6 pt-1">
+                                <span class="dish-text">Без глютена</span>
+                                <select class="form-control inp" name="withoutGluten">
+                                    <option th:value="true" th:text="Да" th:selected="*{withoutGluten==true}"></option>
+                                    <option th:value="false" th:text="Нет" th:selected="*{withoutGluten==false}"></option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="row">
-                            <span>Для веганов:</span>
-                            <select class="form-control" name="forVegans">
-                                <option th:value="true" th:text="Да" th:selected="*{forVegans==true}"></option>
-                                <option th:value="false" th:text="Нет" th:selected="*{forVegans==false}"></option>
-                            </select>
+                        <div class="spacing10"></div>
+                        <div class="row" style="padding-right: 15px">
+                            <div class="col-2">
+                                <span class="dish-text">Звёзды</span>
+                            </div>
+                            <div class="col cent">
+                                <span class="dish-text">1</span>
+                            </div>
+                            <div class="col cent">
+                                <span class="dish-text">2</span>
+                            </div>
+                            <div class="col cent">
+                                <span class="dish-text">3</span>
+                            </div>
+                            <div class="col cent">
+                                <span class="dish-text">4</span>
+                            </div>
+                            <div class="col cent">
+                                <span class="dish-text">5</span>
+                            </div>
                         </div>
-                        <div class="row">
-                            <span>Без сахара:</span>
-                            <select class="form-control" name="withoutSugar">
-                                <option th:value="true" th:text="Да" th:selected="*{withoutSugar==true}"></option>
-                                <option th:value="false" th:text="Нет" th:selected="*{withoutSugar==false}"></option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <span>Без глютена:</span>
-                            <select class="form-control" name="withoutGluten">
-                                <option th:value="true" th:text="Да" th:selected="*{withoutGluten==true}"></option>
-                                <option th:value="false" th:text="Нет" th:selected="*{withoutGluten==false}"></option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <span>1 Звезда:</span>
-                            <input type="text" th:field="*{starOne}">
-                        </div>
-                        <div class="row">
-                            <span>2 Звезды:</span>
-                            <input type="text" th:field="*{starTwo}">
-                        </div>
-                        <div class="row">
-                            <span>3 Звезды:</span>
-                            <input type="text" th:field="*{starThree}">
-                        </div>
-                        <div class="row">
-                            <span>4 Звезды:</span>
-                            <input type="text" th:field="*{starFour}">
-                        </div>
-                        <div class="row">
-                            <span>5 Звезд:</span>
-                            <input type="text" th:field="*{starFive}">
+                        <div class="row" style="padding-right: 15px">
+                            <div class="col-2">
+                            </div>
+                            <div class="col pad-0">
+                                <input type="text" class="form-control inp cent width100" th:field="*{starOne}">
+                            </div>
+                            <div class="col pad-0">
+                                <input type="text" class="form-control inp cent width100" th:field="*{starTwo}">
+                            </div>
+                            <div class="col pad-0">
+                                <input type="text" class="form-control inp cent width100" th:field="*{starThree}">
+                            </div>
+                            <div class="col pad-0">
+                                <input type="text" class="form-control inp cent width100" th:field="*{starFour}">
+                            </div>
+                            <div class="col pad-0">
+                                <input type="text" class="form-control inp cent width100" th:field="*{starFive}">
+                            </div>
                         </div>
                         <input type="hidden" th:field="*{id}" >
+                        <div class="spacing30"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success width100">Сохранить</button>
+                            </div>
+                            <div class="col-6">
+                                <a th:href="@{/menu/dishes/1}" class="card-name">
+                                    <button type="button" class="btn btn-secondary width100">Вернуться к меню</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-1">
 
                     </div>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-outline-secondary width100">Сохранить</button>
                 </div>
             </form>
 

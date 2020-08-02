@@ -34,24 +34,27 @@
 
 <div class="center">
     <div class="children">
-        <h5 class="top-text">Брони</h5>
+        <h1 class="top-text">Мои бронирования</h1>
         <br>
         <table class="table table-hover text-light table-text" >
-            <tr>
+            <tr class="text-secondary">
                 <th>Время от</th>
                 <th>Время до</th>
-                <th>Номер столика</th>
-                <th>Количество человек</th>
+                <th style="text-align: center">Номер столика</th>
+                <th style="text-align: center">Количество человек</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reserve : ${reserves}">
                 <td th:text="${reserve.startDate}"></td>
                 <td th:text="${reserve.finishDate}"></td>
-                <td th:text="${reserve.tableNumber}"></td>
-                <td th:text="${reserve.numberOfPeople}"></td>
+                <td th:text="${reserve.tableNumber}" style="text-align: center"></td>
+                <td th:text="${reserve.numberOfPeople}" style="text-align: center"></td>
                 <td >
-                    <a th:href="@{/reservation/} + ${reserve.reservedId}" class="navbar-brand delete"></a>
-                    <a th:href="@{/}" class="navbar-brand">Предзаказ</a>
-                    <!--<a th:href="@{/restaurant/} + ${reserve.reservedId} + '/order'" class="navbar-brand">Предзаказ</a>-->
+                    <a th:href="@{/}">Добавить предзаказ</a>
+                </td>
+                <td >
+                    <a th:href="@{/reservation/} + ${reserve.reservedId}" class="delete"></a>
                 </td>
             </tr>
         </table>

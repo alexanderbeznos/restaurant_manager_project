@@ -1,4 +1,4 @@
-u<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -31,8 +31,10 @@ u<html xmlns="http://www.w3.org/1999/xhtml"
     <div th:replace="fragments/fragments.html :: side"></div>
 
     <div class="center">
-        <div class="row top-text">
-            <h4 class="top-text">Оформление заказа</h4>
+        <div class="row">
+            <div class="col-12">
+                <h4 class="top-text">Оформление заказа</h4>
+            </div>
         </div>
         <div class="row">
             <div class="col-1">
@@ -46,23 +48,6 @@ u<html xmlns="http://www.w3.org/1999/xhtml"
 
             </div>
         </div>
-        <div class="row">
-            <!--<form action="#" th:action="@{/menu/success-order}" method="get">-->
-                <!--<button type="submit" class="btn btn-secondary width100">Оформить</button>-->
-            <!--</form>-->
-            <!--<form  th:action="@{/menu/success-order}" method="post">-->
-                <!--<input type="text" id="1" name="1" value="">-->
-                <!--<button type="submit" class="btn btn-secondary width100">Оформить</button>-->
-            <!--</form>-->
-        </div>
-        <div class="row">
-            <form th:action="@{/}" method="get">
-                <button type="submit" class="btn btn-secondary width100">К меню</button>
-            </form>
-        </div>
-
-
-
     </div>
 </body>
 </html>
