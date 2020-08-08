@@ -1,20 +1,16 @@
 package project.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 
 @Setter
 @AllArgsConstructor
 @Entity
 @Table(name = "reserve_tables")
-@SequenceGenerator(name = "reserve_tables_id_seq", sequenceName = "reserve_tables_id_seq", allocationSize = 1)
 public class ReserveTables {
 
     private Long id;
@@ -31,7 +27,7 @@ public class ReserveTables {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserve_tables_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

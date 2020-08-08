@@ -15,13 +15,10 @@ import project.entities.common.Cart;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 @Service
 @Transactional
@@ -114,9 +111,6 @@ public class ItemService {
             if (listItems.get(i - 1).getServingTime() != null) {
                 servingTime = reserveTablesService.changeLocalDateTimeToString(listItems.get(i - 1).getServingTime());
                 LocalDateTime time = listItems.get(i - 1).getServingTime();
-//                long years = now.until(time, ChronoUnit.YEARS);
-//                long months = now.until(time, ChronoUnit.MONTHS);
-//                long days = now.until(time, ChronoUnit.DAYS);
                 long hours = now.until(time, ChronoUnit.HOURS);
                 long minutes = now.until(time, ChronoUnit.MINUTES);
                 difference = String.format("%d ч : %d мин", hours, minutes - hours * 60);

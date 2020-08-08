@@ -8,12 +8,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import project.dao.RolesDao;
-import project.entities.Dish;
 import project.entities.Roles;
+import project.entities.User;
 import project.entities.UserSettings;
 import project.entities.common.Cart;
 import project.security.UserValidator;
-import project.entities.User;
 import project.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -80,6 +79,4 @@ public class AuthenticController {
         }
         return "redirect:menu/category/1";
     }
-
-
 }

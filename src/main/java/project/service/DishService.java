@@ -1,7 +1,6 @@
 package project.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -9,8 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import project.dto.ProcessOrderDto;
 import project.dao.DishDao;
+import project.dto.ProcessOrderDto;
 import project.entities.Category;
 import project.entities.Dish;
 import project.entities.User;
@@ -19,7 +18,6 @@ import project.entities.common.FilterMenu;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,7 +93,6 @@ public class DishService {
         List<Category> allCategory = categoryService.findAll();
         model.addAttribute("allCategory", allCategory);
         model.addAttribute("idCategory", dish.getCategory().getId());
-//        model.addAttribute("options", List.of(true, false));
     }
 
     public void getRating(Long id, Integer stars) {
@@ -126,5 +123,4 @@ public class DishService {
         dish.setWithoutGluten(withoutGluten);
         saveOrUpdate(dish);
     }
-
 }

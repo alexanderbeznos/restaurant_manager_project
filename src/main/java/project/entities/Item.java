@@ -1,8 +1,6 @@
 package project.entities;
 
-import lombok.Getter;
 import lombok.Setter;
-import project.entities.Dish;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,7 +8,6 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "items")
-@SequenceGenerator(name = "items_id_seq", sequenceName = "items_id_seq", allocationSize = 1)
 public class Item {
 
     private Long id;
@@ -31,7 +28,7 @@ public class Item {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "items_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

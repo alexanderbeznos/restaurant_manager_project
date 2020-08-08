@@ -7,17 +7,16 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.dto.ProcessOrderDto;
 import project.entities.Dish;
-import project.entities.User;
 import project.entities.common.Cart;
 import project.entities.common.FilterMenu;
-import project.service.*;
+import project.service.DishService;
+import project.service.ItemService;
+import project.service.OrderFoodService;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Map;
 
@@ -40,13 +39,6 @@ public class MenuController {
         dishService.getDishes(category, pageable, filterMenu, model);
         return "menu";
     }
-
-//    @GetMapping(value = "/cart")
-//    public String getCart(ModelMap modelMap) {
-//        Cart cart = new Cart();
-//        modelMap.put("cart", cart.findAll());
-//        return "product/index";
-//    }
 
     @ResponseBody
     @GetMapping(value = "/put/{id}")
@@ -123,5 +115,4 @@ public class MenuController {
         dishService.getDish(dish.getId(), model);
         return "dishForChange";
     }
-
 }

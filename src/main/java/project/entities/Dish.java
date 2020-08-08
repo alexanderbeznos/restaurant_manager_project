@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "dishes")
-@SequenceGenerator(name = "dishes_id_seq", sequenceName = "dishes_id_seq", allocationSize = 1)
 public class Dish {
 
     private Long id;
@@ -32,7 +31,7 @@ public class Dish {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dishes_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;
@@ -43,7 +42,7 @@ public class Dish {
         return name;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "menu_category_id")
     public Category getCategory() {
         return category;

@@ -41,12 +41,6 @@ public class Cart {
     }
 
     public void remove(Item item) {
-//        int id;
-//        for (int i = 0; i < this.products.size(); i++) {
-//            if (item.getDish().getId().equals(products.get(i).getDish().getId())) {
-//                id = i;
-//            }
-//        }
         products.remove(item);
     }
 

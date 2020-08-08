@@ -1,9 +1,7 @@
 package project.dao;
 
-import project.entities.Tables;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
+import project.entities.Tables;
 
 public interface TablesDao extends JpaRepository<Tables, Long> {
 

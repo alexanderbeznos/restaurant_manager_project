@@ -8,7 +8,6 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "roles")
-@SequenceGenerator(name = "roles_id_seq", sequenceName = "tables_id_seq", allocationSize = 1)
 public class Roles {
     private Long id;
     private String name;
@@ -18,7 +17,7 @@ public class Roles {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roles_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

@@ -14,9 +14,9 @@ description varchar
 
 comment on table order_food is 'Заказ пользователя';
 
-comment on column order_food.order_type is 'Тип заказа';
-
 comment on column order_food.id is 'Уникальный ID заказа пользователя';
+
+comment on column order_food.order_type is 'Тип заказа';
 
 comment on column order_food.user_id is 'ID пользователя(зарегистрированного) сделавшего заказ';
 

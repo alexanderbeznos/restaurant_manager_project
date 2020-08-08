@@ -28,7 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
-                .addResourceLocations("/WEB-INF/resources/")
+                .addResourceLocations("classpath:/static/resources/")
                 .setCachePeriod(31556926);
     }
 
@@ -60,7 +60,7 @@ public class WebConfig implements WebMvcConfigurer {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/templates/");
+        templateResolver.setPrefix("classpath:/static/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setCacheable(false);
@@ -82,16 +82,4 @@ public class WebConfig implements WebMvcConfigurer {
         PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
         argumentResolvers.add(resolver);
     }
-
-
-//    @Bean
-//    @Primary
-//    public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
-//        System.out.println("Config is starting.");
-//        ObjectMapper objectMapper = builder.createXmlMapper(false).build();
-//        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-//        return objectMapper;
-//    }
-
-
 }

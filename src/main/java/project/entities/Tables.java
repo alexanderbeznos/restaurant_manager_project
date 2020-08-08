@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "tables")
-@SequenceGenerator(name = "tables_id_seq", sequenceName = "tables_id_seq", allocationSize = 1)
 public class Tables {
 
     private Long id;
@@ -19,7 +18,7 @@ public class Tables {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tables_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

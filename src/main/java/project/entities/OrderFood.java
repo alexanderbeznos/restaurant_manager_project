@@ -9,7 +9,6 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "order_food")
-@SequenceGenerator(name = "order_food_id_seq", sequenceName = "order_food_id_seq", allocationSize = 1)
 public class OrderFood {
 
     private Long id;
@@ -26,7 +25,7 @@ public class OrderFood {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_food_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

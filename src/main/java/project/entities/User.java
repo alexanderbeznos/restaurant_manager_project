@@ -10,7 +10,6 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "users")
-@SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
 public class User {
 
     private Long id;
@@ -26,7 +25,7 @@ public class User {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;

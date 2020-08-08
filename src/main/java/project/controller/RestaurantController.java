@@ -1,20 +1,17 @@
 package project.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project.dto.*;
-import project.entities.ReserveTables;
-import project.entities.User;
+import project.dto.FindTable;
+import project.dto.InfoAboutTableDto;
+import project.dto.TableDto;
+import project.dto.TableShowDto;
 import project.service.ReserveTablesService;
 import project.service.TablesService;
-import project.service.UserService;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -24,7 +21,6 @@ public class RestaurantController {
 
     private final TablesService tablesService;
     private final ReserveTablesService reserveTablesService;
-
 
     @GetMapping(value = "")
     public String showRestaurant() {
@@ -52,6 +48,5 @@ public class RestaurantController {
     @GetMapping(value = "/success-reservation/{id}")
     public String getSuccessReservation(@PathVariable("id") Long id, Model model) {
         return reserveTablesService.getSuccessReservePage(id, model);
-
     }
 }
