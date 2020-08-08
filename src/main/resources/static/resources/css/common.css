@@ -1,0 +1,64 @@
+body {
+    padding-top: 55px;
+    color: white;
+    background: #2c3e50d4;
+}
+
+.width100 {
+    width:100%
+}
+
+.width40 {
+    width:40%
+}
+
+.spacing5 {
+    height: 5px;
+}
+
+.spacing11 {
+    height: 11px;
+}
+
+.spacing10 {
+    height: 10px;
+}
+
+.spacing15 {
+    height: 15px;
+}
+
+.spacing20 {
+    height: 20px;
+}
+
+.spacing30 {
+    height: 30px;
+}
+
+.spacing50 {
+    height: 50px;
+}
+
+.center {
+    padding: 30px;
+    /*border: 5px solid #991022;*/
+    margin-left: 203px;
+}
+
+.margin-top-70 {
+    margin-top: 70px;
+}
+
+.margin-left-30 {
+    margin-left: 30%;
+}
+
+.display-bl{
+    display: inline-block;
+}
+
+.cursor {
+    cursor: pointer;
+}
+/*<img th:src="@{/static/images/logo-white.png}" width="168" height="28"  alt="Iconfinder"/>*/

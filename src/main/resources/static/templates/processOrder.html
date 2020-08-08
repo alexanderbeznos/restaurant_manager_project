@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/processOrder.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>О блюде</title>
+
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: './../menu/show-cart-order',
+                dataType: 'json',
+                success: function(data) {
+                    showOrder(data)
+                }});
+        })
+    </script>
+
+
+</head>
+<body>
+    <div th:replace="fragments/fragments.html :: topMenu"></div>
+
+    <div th:replace="fragments/fragments.html :: side"></div>
+
+    <div class="center">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="top-text">Оформление заказа</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-10">
+                <div id="cart" >
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

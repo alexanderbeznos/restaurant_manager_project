@@ -1,0 +1,15 @@
+.top-text {
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.inp {
+    height: 30px;
+    padding: 0.2rem 0.75rem;
+}
+
+.black-text {
+    color: black;
+}

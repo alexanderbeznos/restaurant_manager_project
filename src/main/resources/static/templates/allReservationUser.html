@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/allReservationUser.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/menu.js}"></script>
+
+    <style th:inline="text">
+        .delete {
+            width: 28px;
+            height: 28px;
+            background:url([[@{/static/images/delete1.png}]]) center center no-repeat;
+            background-size: 100% 100%;
+            padding: 0 0;
+            display:block;
+        }
+        .delete:hover {
+            background-image: url([[@{/static/images/delete2.png}]])
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Бронь</title>
+
+</head>
+<body>
+<div th:replace="fragments/fragments.html :: topMenu"></div>
+
+<div th:replace="fragments/fragments.html :: side"></div>
+
+<div class="center">
+    <div class="children">
+        <h1 class="top-text">Мои бронирования</h1>
+        <br>
+        <table class="table table-hover text-light table-text" >
+            <tr class="text-secondary">
+                <th>Время от</th>
+                <th>Время до</th>
+                <th style="text-align: center">Номер столика</th>
+                <th style="text-align: center">Количество человек</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="reserve : ${reserves}">
+                <td th:text="${reserve.startDate}"></td>
+                <td th:text="${reserve.finishDate}"></td>
+                <td th:text="${reserve.tableNumber}" style="text-align: center"></td>
+                <td th:text="${reserve.numberOfPeople}" style="text-align: center"></td>
+                <td >
+                    <a th:href="@{/}">Добавить предзаказ</a>
+                </td>
+                <td >
+                    <a th:href="@{/reservation/} + ${reserve.reservedId}" class="delete"></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

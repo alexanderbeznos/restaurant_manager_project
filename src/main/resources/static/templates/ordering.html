@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <th:block th:include="fragments/fragments.html :: head"></th:block>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/ordering.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/restaurant.js}"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/datepicker.css}">
+
+    <script type="text/javascript" th:src="@{/static/js/datepicker.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>Предзаказ</title>
+
+
+</head>
+<body>
+<div th:replace="fragments/fragments.html :: topMenu"></div>
+
+<div th:replace="fragments/fragments.html :: side"></div>
+
+<div class="center">
+    <div class="children">
+        <h1 class="top-text">Оформление предзаказа</h1>
+        <br>
+        <span th:text="${head}"></span>
+        <table class="table table-hover text-light table-text" >
+            <tr class="text-secondary">
+                <th>Название блюда</th>
+                <th style="text-align: center">Стоимость</th>
+                <th style="text-align: center">Количество</th>
+                <th style="text-align: center">Сумма</th>
+                <th style="text-align: center">Время подачи</th>
+                <th style="text-align: center">Комментарий</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.dish.name}"></td>
+                <td th:text="${product.dish.price}" style="text-align: center"></td>
+                <td th:text="${product.count}" style="text-align: center"></td>
+                <td th:text="${product.dish.price} * ${product.count}" style="text-align: center"></td>
+                <td style="text-align: center">
+                    <input required th:id="${product.id}" type='text' th:name="1" class='datepicker-here form-control inp' data-timepicker="true"/>
+                </td>
+                <td style="text-align: center">
+                    <input type="text" id="comment" class="form-control inp black-text" placeholder="Комментарий к блюду">
+                </td>
+                <td th:text="${product.dish.id}" style="display:none;"></td>
+            </tr>
+        </table>
+        <button th:onclick="|orderingCheckTime(${reserveTablesId})|" type="button" class="btn btn-success">Оформить предзаказ</button>
+    </div>
+</div>
+</body>
+</html>
